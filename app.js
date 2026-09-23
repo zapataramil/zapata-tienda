@@ -1,6 +1,6 @@
 // ==================== CONFIGURACIÓN ====================
 const BACKEND_URL = 'https://zapata-tienda.vercel.app';
-
+const mp = new MercadoPago('APP_USR-6ac047fa-7d88-4d0f-b39e-a9162a5ddb89', { locale: 'es-AR' });
 // ==================== PRODUCTOS ====================
 const productos = [
   {
