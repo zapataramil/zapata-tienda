@@ -7,18 +7,27 @@ const client = new MercadoPagoConfig({
 
 export const config = {
   api: {
-    bodyParser: false // Necesario para validar la firma HMAC
+    bodyParser: false
   }
 };
 
 export default async function handler(req, res) {
+  // ==================== CORS ====================
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   // Responder 200 INMEDIATAMENTE (MercadoPago espera respuesta rápida)
   res.status(200).send('OK');
 
   try {
     const body = JSON.parse(req.body.toString());
 
-    // Validar firma HMAC (opcional pero recomendado)
+    // Validar firma HMAC
     const xSignature = req.headers['x-signature'];
     const xRequestId = req.headers['x-request-id'];
 
@@ -41,24 +50,22 @@ export default async function handler(req, res) {
       }
     }
 
-    // Procesar solo notificaciones de pagos
     if (body.type !== 'payment') return;
 
     const paymentId = body.data?.id;
     if (!paymentId) return;
 
-    // Consultar el pago real a MercadoPago
     const payment = new Payment(client);
     const paymentInfo = await payment.get({ id: paymentId });
 
     const orderId = paymentInfo.external_reference;
     const status = paymentInfo.status;
 
-    console.log(`💳 Pago ${paymentId} — Estado: ${status}`);
+    console.log(`💳 Pago ${paymentId} — Estado: ${status} — Pedido: ${orderId}`);
 
     if (status === 'approved') {
       console.log(`✅ PAGO APROBADO — Pedido: ${orderId}`);
-      // TODO: Guardar pedido, enviar WhatsApp, actualizar stock
+      // TODO: guardar pedido, enviar WhatsApp, etc.
     }
 
   } catch (error) {
