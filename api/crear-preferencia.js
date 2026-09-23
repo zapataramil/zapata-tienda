@@ -5,7 +5,17 @@ const client = new MercadoPagoConfig({
 });
 
 export default async function handler(req, res) {
-  // Solo aceptar POST
+  // ==================== CORS ====================
+  // Permite que tu tienda en github.io llame a este backend
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Responder al "preflight" que hace el navegador antes del POST
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
   }
@@ -41,6 +51,9 @@ export default async function handler(req, res) {
     res.status(200).json({ id: result.id });
   } catch (error) {
     console.error('Error MP:', error);
-    res.status(500).json({ error: 'Error al crear la preferencia' });
+    res.status(500).json({ 
+      error: 'Error al crear la preferencia', 
+      detalle: error.message 
+    });
   }
 }
