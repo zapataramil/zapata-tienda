@@ -6,7 +6,7 @@ const productos = [
   {
     id: 1,
     nombre: 'Vestido Floral Primavera',
-    precio: 12500,
+    precio: 100,
     imagenes: [
       'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800',
       'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800',
