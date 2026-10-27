@@ -102,9 +102,6 @@ header {
   justify-content: center;
 }
 
-/* 👇 IMAGEN DE FONDO COMPLETAMENTE VISIBLE, SIN OVERLAY */
-/* No hay .hero-overlay en el HTML ahora */
-
 .hero-contenido {
   position: relative;
   z-index: 2;
@@ -154,7 +151,6 @@ header {
   background: #fafafa;
 }
 
-/* VIDEO COMPLETAMENTE VISIBLE, SIN FILTROS */
 .productos-video {
   position: absolute;
   top: 0;
@@ -168,7 +164,6 @@ header {
   pointer-events: none;
 }
 
-/* SIN CAPA BLANCA ENCIMA */
 .productos-overlay {
   position: absolute;
   inset: 0;
@@ -231,7 +226,6 @@ header {
   box-shadow: 0 20px 40px rgba(255, 20, 147, 0.25);
 }
 
-/* BRILLO QUE RECORRE LA TARJETA */
 .card-producto::before {
   content: '';
   position: absolute;
@@ -408,7 +402,8 @@ header {
   width: 95%;
   padding: 0;
   position: relative;
-  overflow: visible;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   max-height: 90vh;
 }
 
@@ -852,7 +847,6 @@ footer {
   margin-top: 4rem;
 }
 
-/* 👇 LOGO DE TEXTO: Z MÁS GRANDE QUE APATA */
 .footer-logo-texto {
   display: flex;
   justify-content: center;
@@ -972,6 +966,21 @@ footer {
 
   .producto-info h2 { font-size: 1.2rem; }
   .detalle-precio { font-size: 1.5rem; }
+
+  /* FIX: modal de producto scrolleable y ✕ siempre visible en móvil */
+  .modal-producto-contenido {
+    max-height: 95vh;
+    width: 100%;
+  }
+
+  .modal-producto-contenido .btn-cerrar-modal {
+    position: sticky;
+    top: 0.5rem;
+    margin-left: auto;
+    margin-right: 0.5rem;
+    float: right;
+    z-index: 20;
+  }
 
   .footer-contacto { flex-direction: column; gap: 0.8rem; }
   .separador { display: none; }
