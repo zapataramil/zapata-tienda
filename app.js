@@ -4,87 +4,14 @@ const mp = new MercadoPago('APP_USR-6fde5b3f-15bd-4519-8c3e-6106bd294e28', { loc
 
 // ==================== PRODUCTOS ====================
 const productos = [
-  {
-    id: 1,
-    nombre: 'Top Morley',
-    precio: 18900,
-    badge: 'NUEVO',
-    imagenes: ['https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800'],
-    descripcion: 'Top de morley ajustado, tela elastizada. Ideal para looks casuales.',
-    talles: ['S', 'M', 'L'],
-    colores: [{ nombre: 'Negro', hex: '#000000' }]
-  },
-  {
-    id: 2,
-    nombre: 'Pantalón Cargo',
-    precio: 32900,
-    badge: null,
-    imagenes: ['https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=800'],
-    descripcion: 'Pantalón cargo tiro alto, pierna ancha. Súper cómodo.',
-    talles: ['S', 'M', 'L'],
-    colores: [{ nombre: 'Negro', hex: '#000000' }]
-  },
-  {
-    id: 3,
-    nombre: 'Buzo Crop',
-    precio: 28900,
-    badge: 'NUEVO',
-    imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'],
-    descripcion: 'Buzo crop oversize, frisa de algodón.',
-    talles: ['S', 'M', 'L'],
-    colores: [{ nombre: 'Blanco', hex: '#FFFFFF' }]
-  },
-  {
-    id: 4,
-    nombre: 'Zapatillas Urbanas',
-    precio: 45900,
-    badge: null,
-    imagenes: ['https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800'],
-    descripcion: 'Zapatillas urbanas blancas, suela gruesa.',
-    talles: ['36', '37', '38', '39', '40'],
-    colores: [{ nombre: 'Blanco', hex: '#FFFFFF' }]
-  },
-  {
-    id: 5,
-    nombre: 'Cartera Negra',
-    precio: 24900,
-    badge: null,
-    imagenes: ['https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=800'],
-    descripcion: 'Cartera de cuero sintético, con manija y correa.',
-    talles: ['Único'],
-    colores: [{ nombre: 'Negro', hex: '#000000' }]
-  },
-  {
-    id: 6,
-    nombre: 'Lentes de Sol',
-    precio: 16900,
-    badge: null,
-    imagenes: ['https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800'],
-    descripcion: 'Lentes de sol con protección UV400, marco negro.',
-    talles: ['Único'],
-    colores: [{ nombre: 'Negro', hex: '#000000' }]
-  },
-  {
-    id: 7,
-    nombre: 'Musculosa Rib',
-    precio: 15900,
-    precioViejo: 19900,
-    badge: '-20%',
-    imagenes: ['https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=800'],
-    descripcion: 'Musculosa de rib, tela suave y fresca.',
-    talles: ['S', 'M', 'L'],
-    colores: [{ nombre: 'Rosa', hex: '#FFB6C1' }]
-  },
-  {
-    id: 8,
-    nombre: 'Blazer Oversize',
-    precio: 49900,
-    badge: null,
-    imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'],
-    descripcion: 'Blazer oversize, caída perfecta. Forrado.',
-    talles: ['S', 'M', 'L'],
-    colores: [{ nombre: 'Negro', hex: '#000000' }]
-  }
+  { id: 1, nombre: 'Top Morley', precio: 18900, badge: 'NUEVO', categoria: 'ropa', imagenes: ['https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800'], descripcion: 'Top de morley ajustado, tela elastizada. Ideal para looks casuales.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Negro', hex: '#000000' }, { nombre: 'Blanco', hex: '#FFFFFF' }] },
+  { id: 2, nombre: 'Pantalón Cargo', precio: 32900, badge: null, categoria: 'ropa', imagenes: ['https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=800'], descripcion: 'Pantalón cargo tiro alto, pierna ancha. Súper cómodo.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Negro', hex: '#000000' }, { nombre: 'Beige', hex: '#D4C4A8' }] },
+  { id: 3, nombre: 'Buzo Crop', precio: 28900, badge: 'NUEVO', categoria: 'ropa', imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'], descripcion: 'Buzo crop oversize, frisa de algodón.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Blanco', hex: '#FFFFFF' }, { nombre: 'Rosa', hex: '#FFB6C1' }] },
+  { id: 4, nombre: 'Zapatillas Urbanas', precio: 45900, badge: null, categoria: 'calzado', imagenes: ['https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800'], descripcion: 'Zapatillas urbanas blancas, suela gruesa.', talles: ['36', '37', '38', '39', '40'], colores: [{ nombre: 'Blanco', hex: '#FFFFFF' }] },
+  { id: 5, nombre: 'Cartera Negra', precio: 24900, badge: null, categoria: 'accesorios', imagenes: ['https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=800'], descripcion: 'Cartera de cuero sintético, con manija y correa.', talles: ['Único'], colores: [{ nombre: 'Negro', hex: '#000000' }] },
+  { id: 6, nombre: 'Lentes de Sol', precio: 16900, badge: null, categoria: 'accesorios', imagenes: ['https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800'], descripcion: 'Lentes de sol con protección UV400, marco negro.', talles: ['Único'], colores: [{ nombre: 'Negro', hex: '#000000' }] },
+  { id: 7, nombre: 'Musculosa Rib', precio: 15900, precioViejo: 19900, badge: '-20%', categoria: 'mas-vendidos', imagenes: ['https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=800'], descripcion: 'Musculosa de rib, tela suave y fresca.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Rosa', hex: '#FFB6C1' }, { nombre: 'Negro', hex: '#000000' }] },
+  { id: 8, nombre: 'Blazer Oversize', precio: 49900, badge: null, categoria: 'novedades', imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'], descripcion: 'Blazer oversize, caída perfecta. Forrado.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Negro', hex: '#000000' }, { nombre: 'Beige', hex: '#D4C4A8' }] }
 ];
 
 // ==================== ESTADO ====================
@@ -94,12 +21,53 @@ let imagenActualIndex = 0;
 let talleSeleccionado = null;
 let colorSeleccionado = null;
 let cantidadSeleccionada = 1;
-let tallesCardSeleccionados = {}; // Guarda los talles elegidos en la tarjeta
+let tallesCardSeleccionados = {}; 
+let coloresCardSeleccionados = {};
+
+// ==================== CARRUSEL ====================
+let slideActual = 0;
+const slides = document.querySelectorAll('.hero-bg');
+const dots = document.querySelectorAll('.dot');
+
+function cambiarSlide(index) {
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[index].classList.add('active');
+  dots[index].classList.add('active');
+  slideActual = index;
+}
+
+setInterval(() => {
+  slideActual = (slideActual + 1) % slides.length;
+  cambiarSlide(slideActual);
+}, 5000);
+
+// ==================== FILTRO CATEGORÍAS ====================
+function filtrarCategoria(cat) {
+  const titulo = document.getElementById('titulo-categoria');
+  let filtrados = [];
+  
+  if (cat === 'todos') {
+    filtrados = productos;
+    titulo.textContent = 'Productos destacados';
+  } else {
+    filtrados = productos.filter(p => p.categoria === cat);
+    titulo.textContent = cat.charAt(0).toUpperCase() + cat.slice(1).replace('-', ' ');
+  }
+  
+  renderizarProductos(filtrados);
+  document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
+}
 
 // ==================== RENDER PRODUCTOS ====================
-function renderizarProductos() {
+function renderizarProductos(lista = productos) {
   const grid = document.getElementById('grid-productos');
-  grid.innerHTML = productos.map(p => `
+  grid.innerHTML = lista.map(p => {
+    // Si solo hay un talle o color, lo auto-seleccionamos en el estado
+    if (p.talles.length === 1) tallesCardSeleccionados[p.id] = p.talles[0];
+    if (p.colores.length === 1) coloresCardSeleccionados[p.id] = p.colores[0].nombre;
+
+    return `
     <div class="card-producto">
       ${p.badge ? `<span class="card-badge ${p.badge === '-20%' ? 'badge-sale' : ''}">${p.badge}</span>` : ''}
       <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
@@ -115,43 +83,66 @@ function renderizarProductos() {
           ${p.precioViejo ? `<span class="precio-viejo">$${p.precioViejo.toLocaleString('es-AR')}</span>` : ''}
         </p>
         
-        <div class="card-talles">
-          ${p.talles.map(t => `
-            <button class="talle-btn" onclick="seleccionarTalleCard(${p.id}, '${t}', this)">${t}</button>
-          `).join('')}
+        <!-- SELECTOR DE COLORES Y TALLES EN LA TARJETA -->
+        <div class="card-variaciones">
+          <div class="card-colores">
+            ${p.colores.map((c, index) => `
+              <button class="color-btn ${p.colores.length === 1 && index === 0 ? 'activo' : ''}" 
+                      style="background:${c.hex}; ${c.hex === '#FFFFFF' ? 'border: 1px solid #ccc;' : ''}" 
+                      onclick="seleccionarColorCard(${p.id}, '${c.nombre}', this)" title="${c.nombre}"></button>
+            `).join('')}
+          </div>
+          <div class="card-talles">
+            ${p.talles.map((t, index) => `
+              <button class="talle-btn ${p.talles.length === 1 && index === 0 ? 'activo' : ''}" 
+                      onclick="seleccionarTalleCard(${p.id}, '${t}', this)">${t}</button>
+            `).join('')}
+          </div>
         </div>
         
         <button class="btn-agregar-card" onclick="agregarDesdeCard(${p.id})">
-          <i class="fa-solid fa-cart-shopping"></i> Agregar al carrito
+          <i class="fa-solid fa-cart-shopping"></i> Agregar
         </button>
       </div>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 // ==================== SELECCIÓN DESDE LA TARJETA ====================
 function seleccionarTalleCard(idProducto, talle, btn) {
   tallesCardSeleccionados[idProducto] = talle;
-  // Quitar la clase 'activo' de los otros botones de ESTA tarjeta
   const card = btn.closest('.card-producto');
   card.querySelectorAll('.talle-btn').forEach(b => b.classList.remove('activo'));
-  // Poner 'activo' en el botón clickeado
   btn.classList.add('activo');
 }
 
-function agregarDesdeCard(idProducto) {
-  const talle = tallesCardSeleccionados[idProducto];
-  if (!talle) {
-    alert('Por favor, seleccioná un talle primero.');
-    return;
-  }
-  const producto = productos.find(p => p.id === idProducto);
-  // Como no hay selector de color en la tarjeta, usamos el primero por defecto
-  const colorDefecto = producto.colores[0].nombre;
-  agregarAlCarritoConVariantes(producto, talle, colorDefecto, 1);
+function seleccionarColorCard(idProducto, color, btn) {
+  coloresCardSeleccionados[idProducto] = color;
+  const card = btn.closest('.card-producto');
+  card.querySelectorAll('.color-btn').forEach(b => b.classList.remove('activo'));
+  btn.classList.add('activo');
 }
 
-// ==================== ABRIR DETALLE (MODAL) ====================
+// ACÁ ESTÁ LA VALIDACIÓN QUE PEDISTE
+function agregarDesdeCard(idProducto) {
+  const producto = productos.find(p => p.id === idProducto);
+  const talle = tallesCardSeleccionados[idProducto];
+  const color = coloresCardSeleccionados[idProducto];
+  
+  if (!talle) {
+    alert('Por favor, seleccioná un talle antes de agregar al carrito.');
+    return;
+  }
+  
+  if (!color) {
+    alert('Por favor, seleccioná un color antes de agregar al carrito.');
+    return;
+  }
+  
+  agregarAlCarritoConVariantes(producto, talle, color, 1);
+}
+
+// ==================== MODAL DETALLE ====================
 function abrirDetalle(id) {
   productoActual = productos.find(p => p.id === id);
   if (!productoActual) return;
@@ -184,7 +175,6 @@ function abrirDetalle(id) {
   document.body.style.overflow = 'hidden';
 }
 
-// ==================== GALERÍA ====================
 function actualizarGaleria() {
   if (!productoActual) return;
   document.getElementById('galeria-imagen').src = productoActual.imagenes[imagenActualIndex];
@@ -211,7 +201,6 @@ document.getElementById('galeria-next').addEventListener('click', () => {
   actualizarGaleria();
 });
 
-// ==================== SELECCIONES MODAL ====================
 function seleccionarTalle(talle, btn) {
   talleSeleccionado = talle;
   document.querySelectorAll('.opcion-talle').forEach(b => b.classList.remove('seleccionado'));
@@ -236,7 +225,6 @@ document.getElementById('btn-restar').addEventListener('click', () => {
   }
 });
 
-// ==================== AGREGAR DESDE MODAL ====================
 document.getElementById('btn-agregar-detalle').addEventListener('click', () => {
   if (!talleSeleccionado) { alert('Por favor, elegí un talle antes de continuar.'); return; }
   if (!colorSeleccionado) { alert('Por favor, elegí un color antes de continuar.'); return; }
@@ -245,7 +233,7 @@ document.getElementById('btn-agregar-detalle').addEventListener('click', () => {
   cerrarModalProducto();
 });
 
-// ==================== CARRITO ====================
+// ==================== CARRITO Y ENVÍO ====================
 function agregarAlCarritoConVariantes(producto, talle, color, cantidad) {
   const idUnico = `${producto.id}-${talle}-${color}`;
   const existente = carrito.find(item => item.idUnico === idUnico);
@@ -261,6 +249,7 @@ function agregarAlCarritoConVariantes(producto, talle, color, cantidad) {
 
   guardarCarrito();
   actualizarCarrito();
+  document.getElementById('modal-carrito').classList.add('activo');
 }
 
 function guardarCarrito() {
@@ -271,6 +260,8 @@ function actualizarCarrito() {
   const contador = document.getElementById('contador');
   const stickyCount = document.getElementById('sticky-count');
   const lista = document.getElementById('lista-carrito');
+  const subtotalSpan = document.getElementById('subtotal-carrito');
+  const envioSpan = document.getElementById('costo-envio');
   const totalSpan = document.getElementById('total');
   const stickyTotal = document.getElementById('sticky-total');
   const stickyCartBar = document.getElementById('sticky-cart');
@@ -296,9 +287,14 @@ function actualizarCarrito() {
     stickyCartBar.classList.add('visible');
   }
 
-  const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+  const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+  const costoEnvio = parseInt(document.getElementById('zona-envio').value) || 0;
+  const total = subtotal + costoEnvio;
+
+  subtotalSpan.textContent = subtotal.toLocaleString('es-AR');
+  envioSpan.textContent = costoEnvio.toLocaleString('es-AR');
   totalSpan.textContent = total.toLocaleString('es-AR');
-  stickyTotal.textContent = total.toLocaleString('es-AR');
+  stickyTotal.textContent = subtotal.toLocaleString('es-AR');
 }
 
 // ==================== MODALES ====================
@@ -337,23 +333,41 @@ document.addEventListener('keydown', (e) => {
 
 // ==================== PAGAR ====================
 document.getElementById('btn-pagar').addEventListener('click', async () => {
-  if (carrito.length === 0) { alert('Tu carrito está vacío. Agregá productos antes de pagar.'); return; }
+  if (carrito.length === 0) { alert('Tu carrito está vacío.'); return; }
+
+  const direccion = document.getElementById('direccion-envio').value.trim();
+  if (!direccion) {
+    alert('Por favor, ingresá tu dirección de envío antes de pagar.');
+    return;
+  }
 
   const btn = document.getElementById('btn-pagar');
   btn.disabled = true;
   btn.textContent = 'Redirigiendo...';
 
+  const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+  const costoEnvio = parseInt(document.getElementById('zona-envio').value) || 0;
+  const zonaTexto = document.getElementById('zona-envio').options[document.getElementById('zona-envio').selectedIndex].text;
+
+  let itemsParaMP = carrito.map(item => ({
+    nombre: `${item.nombre} (Talle ${item.talle}, ${item.color})`,
+    precio: item.precio,
+    cantidad: item.cantidad
+  }));
+
+  if (costoEnvio > 0) {
+    itemsParaMP.push({
+      nombre: `Costo de Envío (${zonaTexto})`,
+      precio: costoEnvio,
+      cantidad: 1
+    });
+  }
+
   try {
     const response = await fetch(`${BACKEND_URL}/api/crear-preferencia`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        items: carrito.map(item => ({
-          nombre: `${item.nombre} (Talle ${item.talle}, ${item.color})`,
-          precio: item.precio,
-          cantidad: item.cantidad
-        }))
-      })
+      body: JSON.stringify({ items: itemsParaMP })
     });
 
     const data = await response.json();
@@ -366,7 +380,7 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
   } catch (error) {
     console.error('Error:', error);
     alert('Hubo un problema. Te redirigimos a WhatsApp para completar tu pedido.');
-    const mensaje = carrito.map(i => `• ${i.nombre} (Talle ${i.talle}) x${i.cantidad}`).join('%0A');
+    const mensaje = carrito.map(i => `• ${i.nombre} (Talle ${i.talle}) x${i.cantidad}`).join('%0A') + `%0A%0AEnv\u00edo a: ${direccion} (${zonaTexto})`;
     window.open(`https://wa.me/5491128619100?text=Hola!%20Quiero%20hacer%20un%20pedido:%0A${mensaje}`, '_blank');
   } finally {
     btn.disabled = false;
