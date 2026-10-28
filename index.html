@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZAPATA Indumentaria — Moda para mujeres auténticas</title>
-  <meta name="description" content="Ropa femenina con envío a todo Buenos Aires. Moda para mujeres auténticas.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -21,15 +20,12 @@
       </a>
       
       <nav class="main-nav">
-        <a href="#" class="active">Inicio</a>
-        <a href="#productos">Tienda</a>
-        <a href="#">Categorías</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#" class="active" onclick="filtrarCategoria('todos')">Inicio</a>
+        <a href="#productos" onclick="filtrarCategoria('todos')">Tienda</a>
       </nav>
 
       <div class="header-icons">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-regular fa-user"></i>
+        <!-- Solo queda el carrito -->
         <button id="btn-carrito" class="cart-icon-btn">
           <i class="fa-solid fa-cart-shopping"></i>
           <span id="contador">0</span>
@@ -38,44 +34,53 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO CON CARRUSEL -->
+  <section class="hero" id="hero-section">
+    <!-- Capas de fondo para el carrusel -->
+    <div class="hero-bg slide-1 active"></div>
+    <div class="hero-bg slide-2"></div>
+    <div class="hero-bg slide-3"></div>
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
       <span class="hero-subtitle">TU ESTILO, TU ESENCIA</span>
       <h1 class="hero-title">MODA QUE<br><span class="text-pink">TE ACOMPAÑA</span></h1>
       <p class="hero-desc">Descubrí las últimas tendencias en indumentaria para cada momento de tu vida.</p>
       <a href="#productos" class="btn-principal">VER COLECCIÓN <i class="fa-solid fa-arrow-right"></i></a>
     </div>
+    
+    <!-- Imagen de la modelo fija a la derecha -->
     <div class="hero-image">
-      <!-- Cambiá esta imagen por tu modelo estrella -->
-      <img src="img/hero-modelo.png" alt="Modelo ZAPATA">
+      <img src="https://images.unsplash.com/photo-1606821217139-3e6d2a3e952b?w=800" alt="Modelo ZAPATA">
     </div>
+
+    <!-- Puntitos del carrusel funcionales -->
     <div class="hero-dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+      <span class="dot active" onclick="cambiarSlide(0)"></span>
+      <span class="dot" onclick="cambiarSlide(1)"></span>
+      <span class="dot" onclick="cambiarSlide(2)"></span>
     </div>
   </section>
 
   <!-- CATEGORIAS -->
   <section class="categorias">
-    <div class="categoria-item">
+    <div class="categoria-item" onclick="filtrarCategoria('ropa')">
       <div class="cat-icon"><i class="fa-solid fa-shirt"></i></div>
       <p>Ropa</p>
     </div>
-    <div class="categoria-item">
+    <div class="categoria-item" onclick="filtrarCategoria('calzado')">
       <div class="cat-icon"><i class="fa-solid fa-shoe-prints"></i></div>
       <p>Calzado</p>
     </div>
-    <div class="categoria-item">
+    <div class="categoria-item" onclick="filtrarCategoria('accesorios')">
       <div class="cat-icon"><i class="fa-solid fa-bag-shopping"></i></div>
       <p>Accesorios</p>
     </div>
-    <div class="categoria-item">
+    <div class="categoria-item" onclick="filtrarCategoria('mas-vendidos')">
       <div class="cat-icon"><i class="fa-solid fa-star"></i></div>
       <p>Más vendidos</p>
     </div>
-    <div class="categoria-item">
+    <div class="categoria-item" onclick="filtrarCategoria('novedades')">
       <div class="cat-icon"><i class="fa-solid fa-tag"></i></div>
       <p>Novedades</p>
     </div>
@@ -84,8 +89,8 @@
   <!-- PRODUCTOS -->
   <section id="productos" class="productos-section">
     <div class="section-header">
-      <h2>Productos destacados</h2>
-      <a href="#" class="ver-todos">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
+      <h2 id="titulo-categoria">Productos destacados</h2>
+      <a href="#" class="ver-todos" onclick="filtrarCategoria('todos')">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     
     <div class="grid-productos" id="grid-productos">
@@ -164,18 +169,40 @@
     </div>
   </div>
 
-  <!-- MODAL CARRITO -->
+  <!-- MODAL CARRITO CON ENVÍO -->
   <div id="modal-carrito" class="modal">
     <div class="modal-contenido">
       <div class="modal-header">
         <h2>Tu Carrito</h2>
         <button id="btn-cerrar-modal" class="btn-cerrar"><i class="fa-solid fa-xmark"></i></button>
       </div>
+      
       <ul id="lista-carrito"></ul>
-      <div class="modal-total">
-        <span>Total:</span>
-        <span class="total-precio">$<span id="total">0</span></span>
+      
+      <!-- SECCIÓN DE ENVÍO -->
+      <div class="envio-section">
+        <h3>Datos de Envío</h3>
+        <select id="zona-envio" onchange="actualizarCarrito()">
+          <option value="0">Retiro en Feria (Sin cargo)</option>
+          <option value="3000">CABA y GBA ($3.000)</option>
+          <option value="4500">Centro del País ($4.500)</option>
+          <option value="5500">Norte ($5.500)</option>
+          <option value="6500">Sur ($6.500)</option>
+        </select>
+        <input type="text" id="direccion-envio" placeholder="Ingresá tu dirección completa (Calle, N°, Localidad)" required>
       </div>
+
+      <div class="modal-total">
+        <div class="totales-desglose">
+          <span>Subtotal: $<span id="subtotal-carrito">0</span></span>
+          <span>Envío: $<span id="costo-envio">0</span></span>
+        </div>
+        <div class="total-final">
+          <span>Total:</span>
+          <span class="total-precio">$<span id="total">0</span></span>
+        </div>
+      </div>
+      
       <div class="modal-botones">
         <button id="btn-vaciar" class="btn-secundario">Vaciar</button>
         <button id="btn-pagar" class="btn-pagar">Pagar con MercadoPago</button>
@@ -187,8 +214,11 @@
   <footer id="contacto">
     <div class="footer-content">
       <div class="footer-col logo-col">
-        <h2 class="footer-z">Z</h2>
-        <p class="footer-script">Moda para mujeres auténticas</p>
+        <!-- Z con rayita hecha en CSS -->
+        <div class="footer-z-custom">
+          Z
+          <span class="footer-z-line"></span>
+        </div>
         <i class="fa-regular fa-heart footer-heart"></i>
       </div>
       <div class="footer-col">
