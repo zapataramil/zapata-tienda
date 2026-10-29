@@ -283,7 +283,7 @@ function actualizarCarrito() {
     stickyCartBar.classList.add('visible');
   }
 
-  // ==================== CÁLCULO DE ENVÍO DINÁMICO ====================
+  // CÁLCULO DE ENVÍO DINÁMICO
   const metodo = document.querySelector('input[name="metodo-entrega"]:checked').value;
   let costoEnvio = 0;
   
@@ -299,13 +299,13 @@ function actualizarCarrito() {
     } else if (provinciaSeleccionada !== '') {
       costoEnvio = 26900; // Cualquier otra provincia
     } else {
-      costoEnvio = 0; // Si no eligió nada todavía
+      costoEnvio = 0;
     }
 
   } else if (metodo === 'encuentro') {
     costoEnvio = 3000;
   } else {
-    costoEnvio = 0; // Retiro es gratis
+    costoEnvio = 0;
   }
 
   const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
