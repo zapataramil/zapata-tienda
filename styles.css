@@ -93,16 +93,16 @@ button { font-family: inherit; cursor: pointer; }
 .btn-agregar-card { width: 100%; background: var(--rosa); color: var(--blanco); border: none; padding: 0.8rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
 .btn-agregar-card:hover { background: var(--rosa-hover); }
 
-/* ==================== BARRA CARRITO FLOTANTE (TRANSPARENTE Y OCULTABLE) ==================== */
+/* ==================== BARRA CARRITO FLOTANTE ==================== */
 .sticky-cart { 
   position: fixed; 
   bottom: 20px; 
   left: 50%; 
-  transform: translate(-50%, 150%); /* Oculto por defecto hacia abajo */
+  transform: translate(-50%, 150%); 
   width: 90%; 
   max-width: 1000px; 
-  background: rgba(255, 240, 246, 0.85); /* Fondo semi-transparente */
-  backdrop-filter: blur(10px); /* Efecto vidrio esmerilado */
+  background: rgba(255, 240, 246, 0.85);
+  backdrop-filter: blur(10px); 
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 209, 230, 0.8); 
   padding: 1rem 1.5rem; 
@@ -112,10 +112,7 @@ button { font-family: inherit; cursor: pointer; }
   transition: transform 0.4s ease, opacity 0.3s ease; 
   opacity: 0;
 }
-.sticky-cart.visible { 
-  transform: translate(-50%, 0); /* Aparece */
-  opacity: 1;
-}
+.sticky-cart.visible { transform: translate(-50%, 0); opacity: 1; }
 .sticky-cart-content { display: flex; justify-content: space-between; align-items: center; }
 .sticky-info { display: flex; align-items: center; gap: 10px; color: var(--negro); font-weight: 500; }
 .sticky-total { font-size: 1rem; }
@@ -203,9 +200,10 @@ footer { background: var(--negro); color: var(--blanco); padding: 3rem 4rem 1rem
   .hero-content { padding-bottom: 2rem; }
   .hero-overlay { background: rgba(13,13,13,0.7); }
   .hero-desc { margin: 0 auto 2rem auto; }
-  .hero-image { justify-content: center; }
-  .hero-image img { max-height: 350px; }
-  .hero-dots { left: 50%; transform: translateX(-50%); }
+  .hero-image { justify-content: center; margin-bottom: 2rem;}
+  /* Achicamos un poco la imagen en tablets */
+  .hero-image img { max-height: 300px; }
+  .hero-dots { left: 50%; transform: translateX(-50%); bottom: 1rem;}
   .header-top { padding: 1rem 2rem; flex-wrap: wrap; gap: 1rem; justify-content: center; }
   .main-nav { order: 3; width: 100%; justify-content: center; }
 }
@@ -218,6 +216,12 @@ footer { background: var(--negro); color: var(--blanco); padding: 3rem 4rem 1rem
   .cat-icon { width: 50px; height: 50px; font-size: 1.1rem; }
   .categoria-item p { font-size: 0.75rem; }
   
+  /* ACHICAMOS LA IMAGEN EN CELULAR */
+  .hero { padding: 2rem 1rem; }
+  .hero-title { font-size: 2rem; margin-bottom: 1rem; }
+  .hero-desc { font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .hero-image img { max-height: 220px; }
+
   .sticky-cart-content { flex-direction: column; gap: 10px; text-align: center; }
   .btn-finalizar { width: 100%; justify-content: center; }
   
@@ -237,4 +241,5 @@ footer { background: var(--negro); color: var(--blanco); padding: 3rem 4rem 1rem
   .card-img-wrap { height: 200px; }
   .info-producto h3 { font-size: 0.85rem; }
   .precio { font-size: 1rem; }
+  .hero-image img { max-height: 180px; } /* Aún más chica en celus chicos */
 }
