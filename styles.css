@@ -25,11 +25,12 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Cuando bajas, se vuelve rosa con vidrio */
+/* Al bajar, FONDO NEGRO con vidrio esmerilado */
 .main-header.scrolled {
-  background: rgba(255, 20, 147, 0.85); /* Fondo rosa semi-transparente */
+  background: rgba(13, 13, 13, 0.85); /* Negro transparente */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* Sombra oscura */
 }
 
 .header-top { display: flex; justify-content: space-between; align-items: center; padding: 1rem 4rem; max-width: 1500px; margin: 0 auto; }
