@@ -76,8 +76,17 @@ button { font-family: inherit; cursor: pointer; }
 .hero-desc { color: #ccc; font-size: 1rem; margin-bottom: 2rem; max-width: 400px; line-height: 1.6; }
 .btn-principal { background: var(--rosa); color: var(--blanco); padding: 1rem 2rem; border-radius: 30px; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; z-index: 4; position: relative; box-shadow: 0 10px 20px rgba(255, 20, 147, 0.3); }
 .btn-principal:hover { background: var(--rosa-hover); transform: translateY(-2px); box-shadow: 0 15px 25px rgba(255, 20, 147, 0.4); }
+
 .hero-image { flex: 1; display: flex; justify-content: flex-end; position: relative; z-index: 3; }
-.hero-image img { max-height: 500px; object-fit: cover; }
+
+/* ACÁ ESTÁ EL CAMBIO DE LA FOTO DE LA MODELO */
+.hero-image img { 
+  max-height: 500px; 
+  object-fit: cover; 
+  border-radius: 30px; 
+  border: 3px solid rgba(255, 20, 147, 0.8); 
+  box-shadow: 0 0 30px rgba(255, 20, 147, 0.5), 0 10px 30px rgba(0,0,0,0.6); 
+}
 
 /* ==================== CATEGORIAS ==================== */
 .categorias { display: flex; justify-content: center; align-items: flex-start; gap: 4rem; padding: 3rem 2rem; background: var(--fondo-tienda); border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; }
@@ -118,33 +127,10 @@ button { font-family: inherit; cursor: pointer; }
 .btn-agregar-card { width: 100%; background: var(--rosa); color: var(--blanco); border: none; padding: 0.8rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
 .btn-agregar-card:hover { background: var(--rosa-hover); }
 
-/* NUEVO BOTÓN VER TODOS (ABAJO) */
-.ver-todos-container {
-  text-align: center;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-}
-
-.ver-todos-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: transparent;
-  color: var(--rosa);
-  border: 2px solid var(--rosa);
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.3s;
-}
-
-.ver-todos-btn:hover {
-  background: var(--rosa);
-  color: var(--blanco);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
-}
+/* BOTÓN VER TODOS (ABAJO) */
+.ver-todos-container { text-align: center; margin-top: 4rem; margin-bottom: 2rem; }
+.ver-todos-btn { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--rosa); border: 2px solid var(--rosa); padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; }
+.ver-todos-btn:hover { background: var(--rosa); color: var(--blanco); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3); }
 
 /* ==================== BARRA CARRITO FLOTANTE ==================== */
 .sticky-cart { 
@@ -313,13 +299,7 @@ footer::before {
   .hero-content { padding-bottom: 2rem; }
   .hero-desc { margin: 0 auto 2rem auto; }
   .hero-image { justify-content: center; margin-bottom: 2rem;}
-  .hero-image img { 
-  max-height: 500px; 
-  object-fit: cover; 
-  border-radius: 30px; /* Esquinas bien redondas */
-  border: 3px solid rgba(255, 20, 147, 0.8); /* Borde rosa neón */
-  box-shadow: 0 0 30px rgba(255, 20, 147, 0.5), 0 10px 30px rgba(0,0,0,0.6); /* Brillo neón + sombra */
-}
+  .hero-image img { max-height: 300px; }
   .header-top { padding: 1rem 2rem; }
 }
 
@@ -335,7 +315,14 @@ footer::before {
   .hero { padding: 8rem 1rem 2rem 1rem; }
   .hero-title { font-size: 2.2rem; margin-bottom: 1rem; }
   .hero-desc { font-size: 0.9rem; margin-bottom: 1.5rem; }
-  .hero-image img { max-height: 250px; border-radius: 15px; box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4); border: 2px solid rgba(255, 255, 255, 0.1); }
+  
+  /* Ajustamos el borde en celular para que no se vea tosco */
+  .hero-image img { 
+    max-height: 250px; 
+    border-radius: 20px; 
+    border: 2px solid rgba(255, 20, 147, 0.8);
+    box-shadow: 0 0 15px rgba(255, 20, 147, 0.4), 0 5px 15px rgba(0,0,0,0.5); 
+  }
 
   .categorias { gap: 1rem; padding: 2rem 1rem; justify-content: space-evenly; }
   .categoria-item { width: 65px; }
