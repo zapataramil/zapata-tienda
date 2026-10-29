@@ -1,9 +1,13 @@
 import { MercadoPagoConfig, Payment } from 'mercadopago';
 import crypto from 'crypto';
+import { Resend } from 'resend';
 
 const client = new MercadoPagoConfig({
   accessToken: process.env.MP_ACCESS_TOKEN
 });
+
+// Inicializamos Resend con tu API Key
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const config = {
   api: {
@@ -12,16 +16,12 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  // ==================== CORS ====================
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // Responder 200 INMEDIATAMENTE (MercadoPago espera respuesta rápida)
   res.status(200).send('OK');
 
   try {
@@ -60,12 +60,55 @@ export default async function handler(req, res) {
 
     const orderId = paymentInfo.external_reference;
     const status = paymentInfo.status;
+    const monto = paymentInfo.transaction_amount;
 
     console.log(`💳 Pago ${paymentId} — Estado: ${status} — Pedido: ${orderId}`);
 
     if (status === 'approved') {
       console.log(`✅ PAGO APROBADO — Pedido: ${orderId}`);
-      // TODO: guardar pedido, enviar WhatsApp, etc.
+
+      // Recuperamos los datos del comprador desde metadata
+      const metadata = paymentInfo.metadata || {};
+      const cliente = metadata.cliente || {};
+
+      // Construimos el HTML del correo con todos los datos
+      const htmlEmail = `
+        <h2>🎉 ¡Nueva venta en ZAPATA!</h2>
+        <p><strong>Pedido:</strong> ${orderId}</p>
+        <p><strong>Monto total pagado:</strong> $${monto.toLocaleString('es-AR')}</p>
+        
+        <h3>📦 Datos del Envío</h3>
+        <p><strong>Método:</strong> ${cliente.metodoEnvio || 'No especificado'}</p>
+        <p><strong>Dirección:</strong> ${cliente.direccion || 'No especificada'}</p>
+        <p><strong>Localidad:</strong> ${cliente.localidad || 'No especificada'}</p>
+        <p><strong>Provincia:</strong> ${cliente.provincia || 'No especificada'}</p>
+        <p><strong>Código Postal:</strong> ${cliente.codigoPostal || 'No especificado'}</p>
+        
+        <h3>👤 Datos de Contacto</h3>
+        <p><strong>Nombre:</strong> ${cliente.nombre || 'No especificado'}</p>
+        <p><strong>Teléfono:</strong> ${cliente.telefono || 'No especificado'}</p>
+        
+        <h3>🛍️ Productos</h3>
+        <ul>
+          ${cliente.productos?.map(prod => `<li>${prod}</li>`).join('') || '<li>No hay detalles de productos</li>'}
+        </ul>
+        
+        <br>
+        <p><em>Este es un aviso automático de tu tienda ZAPATA.</em></p>
+      `;
+
+      // Enviamos el correo con Resend
+      try {
+        await resend.emails.send({
+          from: 'ZAPATA Indumentaria <onboarding@resend.dev>', // Cambiar por tu dominio verificado en producción
+          to: [process.env.EMAIL_DESTINO], // Tu correo personal
+          subject: `🛍️ Nueva venta - Pedido ${orderId}`,
+          html: htmlEmail,
+        });
+        console.log('📧 Correo de venta enviado con éxito');
+      } catch (emailError) {
+        console.error('Error al enviar el correo:', emailError);
+      }
     }
 
   } catch (error) {
