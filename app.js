@@ -281,7 +281,6 @@ function actualizarCarrito() {
         <span class="item-precio">$${(item.precio * item.cantidad).toLocaleString('es-AR')}</span>
       </li>
     `).join('');
-    // Si hay items, lo mostramos por defecto (el scroll listener se encarga de esconderlo si baja)
     stickyCartBar.classList.add('visible');
   }
 
@@ -295,24 +294,30 @@ function actualizarCarrito() {
   stickyTotal.textContent = subtotal.toLocaleString('es-AR');
 }
 
-// ==================== LÓGICA DE SCROLL (MOSTRAR/OCULTAR CARRITO) ====================
+// ==================== LÓGICA DE SCROLL (HEADER Y CARRITO) ====================
 let lastScrollTop = 0;
 const stickyCartBar = document.getElementById('sticky-cart');
+const mainHeader = document.getElementById('main-header');
 
 window.addEventListener('scroll', () => {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   
-  if (carrito.length === 0) return; // No hacer nada si el carrito está vacío
+  // 1. Efecto del Header (Se vuelve rosa al bajar)
+  if (scrollTop > 50) {
+    mainHeader.classList.add('scrolled');
+  } else {
+    mainHeader.classList.remove('scrolled');
+  }
+
+  // 2. Efecto del Carrito (Se esconde al bajar, aparece al subir)
+  if (carrito.length === 0) return;
 
   if (scrollTop > lastScrollTop && scrollTop > 100) {
-    // Scroll hacia ABAJO -> Ocultar
     stickyCartBar.classList.remove('visible');
   } else {
-    // Scroll hacia ARRIBA -> Mostrar
     stickyCartBar.classList.add('visible');
   }
   
-  // Evitar valores negativos en móviles por el "rebote"
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
