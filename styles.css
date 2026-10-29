@@ -33,7 +33,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .header-top { display: flex; justify-content: space-between; align-items: center; padding: 1rem 4rem; max-width: 1500px; margin: 0 auto; }
-.logo-img { height: 70px; transition: 0.3s; } 
+.logo-img { height: 85px; transition: 0.3s; } 
 
 .main-nav { display: flex; gap: 2.5rem; transition: opacity 0.3s ease, transform 0.3s ease; }
 .main-header.scrolled .main-nav { opacity: 0; pointer-events: none; transform: translateY(-10px); }
@@ -266,7 +266,7 @@ footer::before {
   .grid-productos { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   
   .header-top { flex-direction: row; justify-content: space-between; align-items: center; padding: 1rem; gap: 0.5rem; }
-  .logo-img { height: 50px; } 
+  .logo-img { height: 65px; } 
   .main-nav { gap: 1rem; position: static; }
   .main-nav a { font-size: 0.85rem; }
 
