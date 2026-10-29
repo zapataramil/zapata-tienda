@@ -25,9 +25,9 @@ const productos = [
     precio: 22000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['img/productos/campera-engomada-1.jpeg',
-      'img/productos/campera-engomada-2.jpeg',
-      'img/productos/campera-engomada-3.jpeg'],
+    imagenes: ['img/productos/campera-top-engomada-1.jpeg',
+      'img/productos/campera-top-engomada-2.jpeg',
+      'img/productos/campera-top-engomada-3.jpeg'],
     descripcion: 'Campera top engomada, tiro corto. Súper versátil.',
     talles: ['2', '4'],
     colores: [
