@@ -63,7 +63,6 @@ function filtrarCategoria(cat) {
 function renderizarProductos(lista = productos) {
   const grid = document.getElementById('grid-productos');
   grid.innerHTML = lista.map(p => {
-    // Si solo hay un talle o color, lo auto-seleccionamos en el estado
     if (p.talles.length === 1) tallesCardSeleccionados[p.id] = p.talles[0];
     if (p.colores.length === 1) coloresCardSeleccionados[p.id] = p.colores[0].nombre;
 
@@ -83,7 +82,6 @@ function renderizarProductos(lista = productos) {
           ${p.precioViejo ? `<span class="precio-viejo">$${p.precioViejo.toLocaleString('es-AR')}</span>` : ''}
         </p>
         
-        <!-- SELECTOR DE COLORES Y TALLES EN LA TARJETA -->
         <div class="card-variaciones">
           <div class="card-colores">
             ${p.colores.map((c, index) => `
@@ -123,7 +121,6 @@ function seleccionarColorCard(idProducto, color, btn) {
   btn.classList.add('activo');
 }
 
-// ACÁ ESTÁ LA VALIDACIÓN QUE PEDISTE
 function agregarDesdeCard(idProducto) {
   const producto = productos.find(p => p.id === idProducto);
   const talle = tallesCardSeleccionados[idProducto];
@@ -284,6 +281,7 @@ function actualizarCarrito() {
         <span class="item-precio">$${(item.precio * item.cantidad).toLocaleString('es-AR')}</span>
       </li>
     `).join('');
+    // Si hay items, lo mostramos por defecto (el scroll listener se encarga de esconderlo si baja)
     stickyCartBar.classList.add('visible');
   }
 
@@ -296,6 +294,27 @@ function actualizarCarrito() {
   totalSpan.textContent = total.toLocaleString('es-AR');
   stickyTotal.textContent = subtotal.toLocaleString('es-AR');
 }
+
+// ==================== LÓGICA DE SCROLL (MOSTRAR/OCULTAR CARRITO) ====================
+let lastScrollTop = 0;
+const stickyCartBar = document.getElementById('sticky-cart');
+
+window.addEventListener('scroll', () => {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (carrito.length === 0) return; // No hacer nada si el carrito está vacío
+
+  if (scrollTop > lastScrollTop && scrollTop > 100) {
+    // Scroll hacia ABAJO -> Ocultar
+    stickyCartBar.classList.remove('visible');
+  } else {
+    // Scroll hacia ARRIBA -> Mostrar
+    stickyCartBar.classList.add('visible');
+  }
+  
+  // Evitar valores negativos en móviles por el "rebote"
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
 
 // ==================== MODALES ====================
 function cerrarModalProducto() {
