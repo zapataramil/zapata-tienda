@@ -4,14 +4,170 @@ const mp = new MercadoPago('APP_USR-6fde5b3f-15bd-4519-8c3e-6106bd294e28', { loc
 
 // ==================== PRODUCTOS ====================
 const productos = [
-  { id: 1, nombre: 'Top Morley', precio: 18900, badge: 'NUEVO', categoria: 'ropa', imagenes: ['https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800'], descripcion: 'Top de morley ajustado, tela elastizada. Ideal para looks casuales.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Negro', hex: '#000000' }, { nombre: 'Blanco', hex: '#FFFFFF' }] },
-  { id: 2, nombre: 'Pantalón Cargo', precio: 32900, badge: null, categoria: 'ropa', imagenes: ['https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=800'], descripcion: 'Pantalón cargo tiro alto, pierna ancha. Súper cómodo.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Negro', hex: '#000000' }, { nombre: 'Beige', hex: '#D4C4A8' }] },
-  { id: 3, nombre: 'Buzo Crop', precio: 28900, badge: 'NUEVO', categoria: 'ropa', imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'], descripcion: 'Buzo crop oversize, frisa de algodón.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Blanco', hex: '#FFFFFF' }, { nombre: 'Rosa', hex: '#FFB6C1' }] },
-  { id: 4, nombre: 'Zapatillas Urbanas', precio: 45900, badge: null, categoria: 'calzado', imagenes: ['https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800'], descripcion: 'Zapatillas urbanas blancas, suela gruesa.', talles: ['36', '37', '38', '39', '40'], colores: [{ nombre: 'Blanco', hex: '#FFFFFF' }] },
-  { id: 5, nombre: 'Cartera Negra', precio: 24900, badge: null, categoria: 'accesorios', imagenes: ['https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=800'], descripcion: 'Cartera de cuero sintético, con manija y correa.', talles: ['Único'], colores: [{ nombre: 'Negro', hex: '#000000' }] },
-  { id: 6, nombre: 'Lentes de Sol', precio: 16900, badge: null, categoria: 'accesorios', imagenes: ['https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800'], descripcion: 'Lentes de sol con protección UV400, marco negro.', talles: ['Único'], colores: [{ nombre: 'Negro', hex: '#000000' }] },
-  { id: 7, nombre: 'Musculosa Rib', precio: 15900, precioViejo: 19900, badge: '-20%', categoria: 'mas-vendidos', imagenes: ['https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=800'], descripcion: 'Musculosa de rib, tela suave y fresca.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Rosa', hex: '#FFB6C1' }, { nombre: 'Negro', hex: '#000000' }] },
-  { id: 8, nombre: 'Blazer Oversize', precio: 49900, badge: null, categoria: 'novedades', imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'], descripcion: 'Blazer oversize, caída perfecta. Forrado.', talles: ['S', 'M', 'L'], colores: [{ nombre: 'Negro', hex: '#000000' }, { nombre: 'Beige', hex: '#D4C4A8' }] }
+  {
+    id: 1,
+    nombre: 'Campera Engomada',
+    precio: 30000,
+    badge: 'NUEVO',
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800'
+    ],
+    descripcion: 'Campera engomada de excelente calidad. Ideal para días de lluvia o looks urbanos.',
+    talles: ['2', '3', '4'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' },
+      { nombre: 'Visón', hex: '#8B7355' },
+      { nombre: 'Crema', hex: '#F5F5DC' }
+    ]
+  },
+  {
+    id: 2,
+    nombre: 'Campera Top Engomada',
+    precio: 22000,
+    badge: null,
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'
+    ],
+    descripcion: 'Campera top engomada, tiro corto. Súper versátil.',
+    talles: ['2', '4'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' },
+      { nombre: 'Visón', hex: '#8B7355' },
+      { nombre: 'Crema', hex: '#F5F5DC' }
+    ]
+  },
+  {
+    id: 3,
+    nombre: 'Remera Microtull con Encaje',
+    precio: 10000,
+    badge: null,
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800'
+    ],
+    descripcion: 'Remera de microtull con detalles de encaje. Muy delicada y femenina.',
+    talles: ['S', 'M'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' },
+      { nombre: 'Blanco', hex: '#FFFFFF' }
+    ]
+  },
+  {
+    id: 4,
+    nombre: 'Remera Boxy Fit',
+    precio: 11000,
+    badge: null,
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800'
+    ],
+    descripcion: 'Remera de corte holgado (boxy fit). Súper cómoda para el día a día.',
+    talles: ['M', 'XL'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' },
+      { nombre: 'Celeste', hex: '#87CEEB' },
+      { nombre: 'Blanco', hex: '#FFFFFF' },
+      { nombre: 'Beige', hex: '#F5F5DC' },
+      { nombre: 'Durazno', hex: '#FFDAB9' }
+    ]
+  },
+  {
+    id: 5,
+    nombre: 'Remera Oversize',
+    precio: 13000,
+    badge: null,
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800'
+    ],
+    descripcion: 'Remera oversize, caída perfecta. Un básico que no puede faltar.',
+    talles: ['M', 'XL'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' },
+      { nombre: 'Beige', hex: '#F5F5DC' }
+    ]
+  },
+  {
+    id: 6,
+    nombre: 'Remera Básica',
+    precio: 11000,
+    badge: null,
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800'
+    ],
+    descripcion: 'Remera básica de algodón. Calidad premium.',
+    talles: ['S', 'L'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' },
+      { nombre: 'Blanco', hex: '#FFFFFF' }
+    ]
+  },
+  {
+    id: 7,
+    nombre: 'Vestido Aura',
+    precio: 24000,
+    badge: 'NUEVO',
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800'
+    ],
+    descripcion: 'Vestido Aura, diseño exclusivo de ZAPATA. Elegante y con una caída increíble.',
+    talles: ['S', 'M'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' },
+      { nombre: 'Bordo', hex: '#800000' },
+      { nombre: 'Chocolate', hex: '#7B3F00' },
+      { nombre: 'Blanco', hex: '#FFFFFF' }
+    ]
+  },
+  {
+    id: 8,
+    nombre: 'Body Microtull con Encaje',
+    precio: 13000,
+    badge: null,
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1564257577352-c2e2c4c1e7d0?w=800'
+    ],
+    descripcion: 'Body de microtull con encaje. Ideal para looks nocturnos.',
+    talles: ['S', 'M'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' }
+    ]
+  },
+  {
+    id: 9,
+    nombre: 'Body Luna',
+    precio: 13000,
+    badge: null,
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1515347619152-6467b52c4849?w=800'
+    ],
+    descripcion: 'Body Luna, tela elastizada que se adapta perfecto al cuerpo.',
+    talles: ['S', 'M'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' }
+    ]
+  },
+  {
+    id: 10,
+    nombre: 'Body Cierre',
+    precio: 13000,
+    badge: null,
+    categoria: 'ropa',
+    imagenes: [
+      'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=800'
+    ],
+    descripcion: 'Body con cierre delantero. Detalle súper moderno.',
+    talles: ['S', 'M'],
+    colores: [
+      { nombre: 'Negro', hex: '#000000' }
+    ]
+  }
 ];
 
 // ==================== ESTADO ====================
