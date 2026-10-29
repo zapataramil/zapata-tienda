@@ -210,97 +210,58 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
 .checkout-section { margin-bottom: 1rem; }
 .checkout-section h3 { font-size: 0.9rem; margin-bottom: 0.8rem; font-weight: 700; color: var(--negro); }
 
-/* RADIO BUTTONS DE ENTREGA */
-.metodos-entrega {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 1rem;
-}
-
-.radio-card {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border: 1.5px solid #ddd;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
-  background: var(--blanco);
-}
-
+.metodos-entrega { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+.radio-card { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1.5px solid #ddd; border-radius: 8px; cursor: pointer; transition: 0.2s; background: var(--blanco); }
 .radio-card:hover { border-color: var(--rosa); }
 .radio-card input[type="radio"] { accent-color: var(--rosa); transform: scale(1.2); cursor: pointer; }
 .radio-title { font-size: 0.9rem; font-weight: 500; }
 
-/* FORMULARIOS DE ENTREGA */
-.form-entrega {
-  background: #f9f9f9;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  border: 1px solid #eee;
-}
-
-.form-entrega input, .form-entrega select {
-  width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 0.6rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  outline: none;
-  background: var(--blanco);
-}
-
+.form-entrega { background: #f9f9f9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #eee; }
+.form-entrega input, .form-entrega select { width: 100%; padding: 0.7rem; margin-bottom: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 0.85rem; outline: none; background: var(--blanco); }
 .form-entrega input:focus, .form-entrega select:focus { border-color: var(--rosa); }
 
-.info-box {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: var(--negro);
+/* CARTEL DE LLEGA MAÑANA */
+.mensaje-envio-rapido {
+  display: none; /* Oculto por defecto */
+  color: #2ed573;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(46, 213, 115, 0.1);
+  border: 1px dashed #2ed573;
+  border-radius: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: pulse-green 2s infinite;
 }
+
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(46, 213, 115, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0); }
+}
+
+.info-box { font-size: 0.9rem; line-height: 1.5; color: var(--negro); }
 .text-gratis { color: #2ed573; font-weight: 700; font-size: 1.1rem; margin-top: 5px; }
 .precio-encuentro { color: var(--rosa); font-weight: 700; font-size: 1.1rem; margin-top: 5px; }
 
-.form-contacto input {
-  width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 0.6rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  outline: none;
-}
+.form-contacto input { width: 100%; padding: 0.7rem; margin-bottom: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; font-size: 0.85rem; outline: none; }
 .form-contacto input:focus { border-color: var(--rosa); }
 
-/* TOTALES */
 .modal-total { display: flex; flex-direction: column; padding: 1rem 0; border-top: 1px solid #eee; gap: 0.5rem; }
 .totales-desglose { display: flex; justify-content: space-between; font-size: 0.85rem; color: #666; }
 .total-final { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin-top: 5px; }
 .total-precio { color: var(--rosa); font-size: 1.3rem; }
 
-/* BOTONES */
 .modal-botones { display: flex; gap: 1rem; margin-top: 1rem; }
 .btn-secundario { flex: 1; background: transparent; border: 1px solid #ddd; border-radius: 30px; padding: 0.8rem; font-weight: 500; transition: 0.3s; }
 .btn-secundario:hover { border-color: var(--rosa); color: var(--rosa); }
 
 .btn-pagar { flex: 2; background: var(--rosa); color: var(--blanco); border: none; border-radius: 30px; padding: 0.8rem; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
-
-/* BOTÓN DE PAGO DESHABILITADO */
-.btn-pagar:disabled {
-  background: #ccc;
-  color: #888;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-.btn-pagar:not(:disabled):hover {
-  background: var(--rosa-hover);
-  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
-}
+.btn-pagar:disabled { background: #ccc; color: #888; cursor: not-allowed; box-shadow: none; }
+.btn-pagar:not(:disabled):hover { background: var(--rosa-hover); box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3); }
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 1024px) {
