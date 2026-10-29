@@ -93,9 +93,29 @@ button { font-family: inherit; cursor: pointer; }
 .btn-agregar-card { width: 100%; background: var(--rosa); color: var(--blanco); border: none; padding: 0.8rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
 .btn-agregar-card:hover { background: var(--rosa-hover); }
 
-/* ==================== BARRA CARRITO FLOTANTE ==================== */
-.sticky-cart { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1000px; background: #fff0f6; border: 1px solid #ffd1e6; padding: 1rem 1.5rem; border-radius: 50px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); z-index: 99; transition: bottom 0.4s ease; }
-.sticky-cart.visible { bottom: 20px; }
+/* ==================== BARRA CARRITO FLOTANTE (TRANSPARENTE Y OCULTABLE) ==================== */
+.sticky-cart { 
+  position: fixed; 
+  bottom: 20px; 
+  left: 50%; 
+  transform: translate(-50%, 150%); /* Oculto por defecto hacia abajo */
+  width: 90%; 
+  max-width: 1000px; 
+  background: rgba(255, 240, 246, 0.85); /* Fondo semi-transparente */
+  backdrop-filter: blur(10px); /* Efecto vidrio esmerilado */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 209, 230, 0.8); 
+  padding: 1rem 1.5rem; 
+  border-radius: 50px; 
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15); 
+  z-index: 99; 
+  transition: transform 0.4s ease, opacity 0.3s ease; 
+  opacity: 0;
+}
+.sticky-cart.visible { 
+  transform: translate(-50%, 0); /* Aparece */
+  opacity: 1;
+}
 .sticky-cart-content { display: flex; justify-content: space-between; align-items: center; }
 .sticky-info { display: flex; align-items: center; gap: 10px; color: var(--negro); font-weight: 500; }
 .sticky-total { font-size: 1rem; }
