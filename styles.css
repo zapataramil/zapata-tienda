@@ -51,7 +51,6 @@ button { font-family: inherit; cursor: pointer; }
 /* ==================== HERO CON VIDEO DE FONDO ==================== */
 .hero { display: flex; justify-content: space-between; align-items: center; padding: 10rem 4rem 0 4rem; max-width: 1500px; margin: 0 auto; min-height: 650px; position: relative; overflow: hidden; background: var(--negro); }
 
-/* El video que cubre todo */
 .hero-video {
   position: absolute;
   top: 0;
@@ -60,7 +59,7 @@ button { font-family: inherit; cursor: pointer; }
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  opacity: 0.5; /* Lo hacemos un poco transparente para que el texto se lea bien */
+  opacity: 0.5; 
 }
 
 .hero-overlay { 
@@ -90,9 +89,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ==================== PRODUCTOS ==================== */
 .productos-section { max-width: 1300px; margin: 0 auto; padding: 4rem 2rem; background: var(--fondo-tienda); }
-.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-.section-header h2 { font-size: 1.5rem; font-weight: 700; }
-.ver-todos { color: var(--rosa); font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
+
 .grid-productos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
 
 .card-producto { background: var(--blanco); border-radius: 8px; overflow: hidden; position: relative; transition: 0.3s; border: 1px solid transparent; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
@@ -120,6 +117,34 @@ button { font-family: inherit; cursor: pointer; }
 
 .btn-agregar-card { width: 100%; background: var(--rosa); color: var(--blanco); border: none; padding: 0.8rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
 .btn-agregar-card:hover { background: var(--rosa-hover); }
+
+/* NUEVO BOTÓN VER TODOS (ABAJO) */
+.ver-todos-container {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+.ver-todos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--rosa);
+  border: 2px solid var(--rosa);
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.ver-todos-btn:hover {
+  background: var(--rosa);
+  color: var(--blanco);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+}
 
 /* ==================== BARRA CARRITO FLOTANTE ==================== */
 .sticky-cart { 
