@@ -283,29 +283,37 @@ function actualizarCarrito() {
     stickyCartBar.classList.add('visible');
   }
 
-  // CÁLCULO DE ENVÍO DINÁMICO
+  // CÁLCULO DE ENVÍO DINÁMICO Y MENSAJE "LLEGA MAÑANA"
   const metodo = document.querySelector('input[name="metodo-entrega"]:checked').value;
   let costoEnvio = 0;
+  const mensajeRapido = document.getElementById('mensaje-envio-rapido');
   
   if (metodo === 'domicilio') {
     const provinciaSeleccionada = document.getElementById('dir-provincia').value;
     
     if (provinciaSeleccionada === 'CABA') {
       costoEnvio = 9000;
+      mensajeRapido.style.display = 'block';
     } else if (provinciaSeleccionada === 'Buenos Aires Conurbano Zona Sur') {
       costoEnvio = 8000;
+      mensajeRapido.style.display = 'block';
     } else if (provinciaSeleccionada === 'Buenos Aires') {
       costoEnvio = 19900;
+      mensajeRapido.style.display = 'none';
     } else if (provinciaSeleccionada !== '') {
       costoEnvio = 26900; // Cualquier otra provincia
+      mensajeRapido.style.display = 'none';
     } else {
       costoEnvio = 0;
+      mensajeRapido.style.display = 'none';
     }
 
   } else if (metodo === 'encuentro') {
     costoEnvio = 3000;
+    mensajeRapido.style.display = 'none';
   } else {
     costoEnvio = 0;
+    mensajeRapido.style.display = 'none';
   }
 
   const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
@@ -379,7 +387,6 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
   
   if (!nombre || !telefono) { alert('Por favor, completá tus datos de contacto.'); return; }
   
-  // Recolectamos los datos del envío
   let orderData = {
     metodoEnvio: metodo === 'domicilio' ? 'Envío a Domicilio' : (metodo === 'retiro' ? 'Retiro en Tienda' : 'Punto de Encuentro'),
     nombre: nombre,
