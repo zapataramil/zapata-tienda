@@ -168,17 +168,26 @@
         <div class="metodos-entrega">
           <label class="radio-card">
             <input type="radio" name="metodo-entrega" value="domicilio" checked onchange="cambiarMetodoEntrega()">
-            <span class="radio-title">Envío a Domicilio</span>
+            <div class="radio-texto">
+              <span class="radio-title">Envío a Domicilio</span>
+              <span class="radio-subtitle">CABA o BsAs Zona Sur: Llega mañana</span>
+            </div>
           </label>
           
           <label class="radio-card">
             <input type="radio" name="metodo-entrega" value="retiro" onchange="cambiarMetodoEntrega()">
-            <span class="radio-title">Retiro en Tienda</span>
+            <div class="radio-texto">
+              <span class="radio-title">Retiro en Tienda</span>
+              <span class="radio-subtitle">Lunes a Sábados de 8 a 19hs</span>
+            </div>
           </label>
           
           <label class="radio-card">
             <input type="radio" name="metodo-entrega" value="encuentro" onchange="cambiarMetodoEntrega()">
-            <span class="radio-title">Punto de Encuentro</span>
+            <div class="radio-texto">
+              <span class="radio-title">Punto de Encuentro</span>
+              <span class="radio-subtitle">Días de semana. ¡Podes llevártelo mañana!</span>
+            </div>
           </label>
         </div>
 
@@ -220,9 +229,12 @@
           <input type="text" id="dir-cp" placeholder="Código Postal" oninput="validarFormulario()">
           <input type="text" id="dir-depto" placeholder="Departamento" oninput="validarFormulario()">
 
-          <!-- CARTEL DE LLEGA MAÑANA -->
           <div id="mensaje-envio-rapido" class="mensaje-envio-rapido">
             <i class="fa-solid fa-truck-fast"></i> LLEGA MAÑANA
+          </div>
+          
+          <div id="mensaje-envio-normal" class="mensaje-envio-tiempo">
+            <i class="fa-solid fa-truck"></i> LLEGA DE 2 A 6 DÍAS HÁBILES
           </div>
         </div>
 
@@ -232,6 +244,7 @@
             <p><strong>Retirar en el domicilio del vendedor</strong></p>
             <p>Wilde, Zona Sur Buenos Aires</p>
             <p class="text-gratis">GRATIS</p>
+            <p class="text-info-horario"><i class="fa-regular fa-clock"></i> Lunes a Sábados de 8 a 19hs</p>
           </div>
         </div>
 
@@ -242,6 +255,7 @@
             <p>Avellaneda, Lanús, Quilmes, Berazategui, Lomas de Zamora, Almirante Brown.</p>
             <p style="margin-top: 5px; font-size: 0.85rem; color: #666;">Entrega en estaciones de tren, o lugares a coordinar.</p>
             <p class="precio-encuentro">Costo: $3.000</p>
+            <p class="text-info-horario"><i class="fa-regular fa-clock"></i> Entrega todos los días de semana!</p>
           </div>
         </div>
 
