@@ -36,9 +36,8 @@
   <!-- HERO CON VIDEO DE FONDO -->
   <section class="hero" id="hero-section">
     
-    <!-- VIDEO DE FONDO -->
+    <!-- TU VIDEO -->
     <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200">
-      <!-- Podés cambiar este link por "img/tu-video.mp4" -->
       <source src="img/video1.mp4" type="video/mp4">
     </video>
 
@@ -54,8 +53,6 @@
     <div class="hero-image">
       <img src="img/hero-modelo.png" alt="Modelo ZAPATA">
     </div>
-
-    <!-- Ya no hay puntitos porque es un video en loop infinito -->
   </section>
 
   <!-- CATEGORIAS -->
@@ -84,12 +81,14 @@
 
   <!-- PRODUCTOS -->
   <section id="productos" class="productos-section">
-    <div class="section-header">
-      <h2 id="titulo-categoria">Productos destacados</h2>
-      <a href="#" class="ver-todos" onclick="filtrarCategoria('todos')">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
+    <!-- Se quitó el título y el "ver todos" de acá arriba -->
     
     <div class="grid-productos" id="grid-productos"></div>
+
+    <!-- NUEVO BOTÓN "VER TODOS" ABAJO DE TODO -->
+    <div class="ver-todos-container">
+      <a href="#" class="ver-todos-btn" onclick="filtrarCategoria('todos')">Ver todos los productos <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
   </section>
 
   <!-- BARRA CARRITO FLOTANTE -->
