@@ -24,6 +24,34 @@ let cantidadSeleccionada = 1;
 let tallesCardSeleccionados = {}; 
 let coloresCardSeleccionados = {};
 
+// ==================== FUNCIÓN DE FLORES (GLOBAL) ====================
+function lanzarFlores(e) {
+  // Evitamos que al tocar el corazón se abra el producto
+  if (e.stopPropagation) e.stopPropagation();
+
+  const elemento = e.currentTarget; // El botón o corazón clickeado
+  elemento.style.transform = 'scale(1.5)';
+  setTimeout(() => { elemento.style.transform = 'scale(1)'; }, 200);
+
+  const emojis = ['🌸', '🌺', '🌷', '🌹', '💐', '✨'];
+  const rect = elemento.getBoundingClientRect();
+  const startX = rect.left + rect.width / 2;
+  const startY = rect.top;
+
+  for (let i = 0; i < 12; i++) {
+    setTimeout(() => {
+      const flor = document.createElement('div');
+      flor.className = 'flor-animada';
+      flor.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      const offsetX = (Math.random() - 0.5) * 150; 
+      flor.style.left = `${startX + offsetX}px`;
+      flor.style.top = `${startY}px`;
+      document.body.appendChild(flor);
+      setTimeout(() => flor.remove(), 2000);
+    }, i * 100);
+  }
+}
+
 // ==================== FILTRO CATEGORÍAS ====================
 function filtrarCategoria(cat) {
   let filtrados = [];
@@ -48,7 +76,9 @@ function renderizarProductos(lista = productos) {
     return `
     <div class="card-producto">
       ${p.badge ? `<span class="card-badge ${p.badge === '-20%' ? 'badge-sale' : ''}">${p.badge}</span>` : ''}
-      <button class="btn-fav"><i class="fa-regular fa-heart"></i></button>
+      
+      <!-- ACÁ AGREGAMOS EL EVENTO AL CORAZÓN -->
+      <button class="btn-fav" onclick="lanzarFlores(event)"><i class="fa-regular fa-heart"></i></button>
       
       <div class="card-img-wrap" onclick="abrirDetalle(${p.id})">
         <img src="${p.imagenes[0]}" alt="${p.nombre}" loading="lazy">
@@ -332,32 +362,12 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ==================== CORAZÓN CON FLORES ====================
+// ==================== CORAZÓN DEL FOOTER ====================
 const btnCorazonFooter = document.getElementById('btn-footer-heart');
 
+// Ahora el footer usa la misma función de flores
 if (btnCorazonFooter) {
-  btnCorazonFooter.addEventListener('click', (e) => {
-    e.target.style.transform = 'scale(1.5)';
-    setTimeout(() => { e.target.style.transform = 'scale(1)'; }, 200);
-
-    const emojis = ['🌸', '🌺', '🌷', '🌹', '💐', '✨'];
-    const rect = e.target.getBoundingClientRect();
-    const startX = rect.left + rect.width / 2;
-    const startY = rect.top;
-
-    for (let i = 0; i < 12; i++) {
-      setTimeout(() => {
-        const flor = document.createElement('div');
-        flor.className = 'flor-animada';
-        flor.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        const offsetX = (Math.random() - 0.5) * 150; 
-        flor.style.left = `${startX + offsetX}px`;
-        flor.style.top = `${startY}px`;
-        document.body.appendChild(flor);
-        setTimeout(() => flor.remove(), 2000);
-      }, i * 100);
-    }
-  });
+  btnCorazonFooter.addEventListener('click', lanzarFlores);
 }
 
 // ==================== PAGAR ====================
