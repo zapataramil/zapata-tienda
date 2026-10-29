@@ -10,7 +10,9 @@ const productos = [
     precio: 30000,
     badge: 'NUEVO',
     categoria: 'ropa',
-    imagenes: ['https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800'],
+    imagenes: ['img/productos/campera-engomada-1.jpeg',
+      'img/productos/campera-engomada-2.jpeg',
+      'img/productos/campera-engomada-3.jpeg'],
     descripcion: 'Campera engomada de excelente calidad. Ideal para días de lluvia o looks urbanos.',
     talles: ['2', '3', '4'],
     colores: [
