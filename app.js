@@ -283,37 +283,41 @@ function actualizarCarrito() {
     stickyCartBar.classList.add('visible');
   }
 
-  // CÁLCULO DE ENVÍO DINÁMICO Y MENSAJE "LLEGA MAÑANA"
+  // CÁLCULO DE ENVÍO DINÁMICO Y CARTELES DE TIEMPO
   const metodo = document.querySelector('input[name="metodo-entrega"]:checked').value;
   let costoEnvio = 0;
   const mensajeRapido = document.getElementById('mensaje-envio-rapido');
+  const mensajeNormal = document.getElementById('mensaje-envio-normal');
   
   if (metodo === 'domicilio') {
     const provinciaSeleccionada = document.getElementById('dir-provincia').value;
     
-    if (provinciaSeleccionada === 'CABA') {
-      costoEnvio = 9000;
+    if (provinciaSeleccionada === 'CABA' || provinciaSeleccionada === 'Buenos Aires Conurbano Zona Sur') {
+      costoEnvio = provinciaSeleccionada === 'CABA' ? 9000 : 8000;
       mensajeRapido.style.display = 'block';
-    } else if (provinciaSeleccionada === 'Buenos Aires Conurbano Zona Sur') {
-      costoEnvio = 8000;
-      mensajeRapido.style.display = 'block';
+      mensajeNormal.style.display = 'none';
     } else if (provinciaSeleccionada === 'Buenos Aires') {
       costoEnvio = 19900;
       mensajeRapido.style.display = 'none';
+      mensajeNormal.style.display = 'block';
     } else if (provinciaSeleccionada !== '') {
-      costoEnvio = 26900; // Cualquier otra provincia
+      costoEnvio = 26900;
       mensajeRapido.style.display = 'none';
+      mensajeNormal.style.display = 'block';
     } else {
       costoEnvio = 0;
       mensajeRapido.style.display = 'none';
+      mensajeNormal.style.display = 'none';
     }
 
   } else if (metodo === 'encuentro') {
     costoEnvio = 3000;
     mensajeRapido.style.display = 'none';
+    mensajeNormal.style.display = 'none';
   } else {
     costoEnvio = 0;
     mensajeRapido.style.display = 'none';
+    mensajeNormal.style.display = 'none';
   }
 
   const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
@@ -446,7 +450,7 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
         items: itemsParaMP,
-        orderData: orderData // 👈 Enviamos los datos del comprador al backend
+        orderData: orderData
       })
     });
 
