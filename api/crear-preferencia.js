@@ -5,26 +5,21 @@ const client = new MercadoPagoConfig({
 });
 
 export default async function handler(req, res) {
-  // ==================== CORS ====================
-  // Permite que tu tienda en github.io llame a este backend
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Responder al "preflight" que hace el navegador antes del POST
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Método no permitido' });
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Método no permitido' });
-  }
-
-  const { items } = req.body;
+  const { items, orderData } = req.body;
 
   if (!items || items.length === 0) {
     return res.status(400).json({ error: 'El carrito está vacío' });
   }
+
+  // Generamos un ID de pedido único para rastrear la compra
+  const orderId = `ZAPATA-${Date.now()}`;
 
   try {
     const preference = new Preference(client);
@@ -37,6 +32,14 @@ export default async function handler(req, res) {
           quantity: Number(item.cantidad),
           currency_id: 'ARS'
         })),
+        // Guardamos TODOS los datos del comprador en metadata
+        metadata: {
+          order_id: orderId,
+          cliente: orderData || {} // Acá van nombre, teléfono, dirección, método de envío, etc.
+        },
+        // Si el cliente tiene email, se lo pasamos a MercadoPago
+        payer: orderData?.email ? { email: orderData.email } : undefined,
+        external_reference: orderId,
         back_urls: {
           success: 'https://zapataramil.github.io/zapata-tienda/pago-exitoso.html',
           failure: 'https://zapataramil.github.io/zapata-tienda/pago-fallido.html',
@@ -48,7 +51,7 @@ export default async function handler(req, res) {
       }
     });
 
-    res.status(200).json({ id: result.id });
+    res.status(200).json({ id: result.id, orderId });
   } catch (error) {
     console.error('Error MP:', error);
     res.status(500).json({ 
