@@ -379,10 +379,37 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
   
   if (!nombre || !telefono) { alert('Por favor, completá tus datos de contacto.'); return; }
   
+  // Recolectamos los datos del envío
+  let orderData = {
+    metodoEnvio: metodo === 'domicilio' ? 'Envío a Domicilio' : (metodo === 'retiro' ? 'Retiro en Tienda' : 'Punto de Encuentro'),
+    nombre: nombre,
+    telefono: telefono,
+    productos: carrito.map(i => `${i.nombre} (Talle ${i.talle}, ${i.color}) x${i.cantidad}`),
+  };
+
   if (metodo === 'domicilio') {
     const dir = document.getElementById('dir-calle').value.trim();
+    const entre = document.getElementById('dir-entre-calles').value.trim();
+    const prov = document.getElementById('dir-provincia').value;
     const loc = document.getElementById('dir-localidad').value.trim();
-    if (!dir || !loc) { alert('Por favor, completá tu dirección y localidad.'); return; }
+    const cp = document.getElementById('dir-cp').value.trim();
+    const depto = document.getElementById('dir-depto').value.trim();
+    
+    if (!dir || !entre || !prov || !loc || !cp) { alert('Por favor, completá tu dirección, localidad y provincia.'); return; }
+    
+    orderData.direccion = `${dir} (entre ${entre})`;
+    orderData.localidad = loc;
+    orderData.provincia = prov;
+    orderData.codigoPostal = cp;
+    orderData.departamento = depto || 'No especificado';
+  } else if (metodo === 'encuentro') {
+    orderData.direccion = 'Punto de Encuentro (Zona Sur)';
+    orderData.localidad = 'A coordinar';
+    orderData.provincia = 'Buenos Aires';
+  } else {
+    orderData.direccion = 'Retiro en Tienda (Wilde)';
+    orderData.localidad = 'Wilde';
+    orderData.provincia = 'Buenos Aires';
   }
 
   const btn = document.getElementById('btn-pagar');
@@ -392,16 +419,6 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
   const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
   const costoEnvio = parseInt(document.getElementById('costo-envio').textContent.replace(/\./g, '')) || 0;
   
-  let textoMetodo = "";
-  if(metodo === 'domicilio') {
-    const prov = document.getElementById('dir-provincia').value;
-    textoMetodo = `Envío a Domicilio (${document.getElementById('dir-calle').value}, ${document.getElementById('dir-localidad').value}, ${prov})`;
-  } else if (metodo === 'retiro') {
-    textoMetodo = "Retiro en Tienda (Wilde)";
-  } else {
-    textoMetodo = "Punto de Encuentro (Zona Sur)";
-  }
-
   let itemsParaMP = carrito.map(item => ({
     nombre: `${item.nombre} (Talle ${item.talle}, ${item.color})`,
     precio: item.precio,
@@ -410,7 +427,7 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
 
   if (costoEnvio > 0) {
     itemsParaMP.push({
-      nombre: `Costo de Envío - ${textoMetodo}`,
+      nombre: `Costo de Envío - ${orderData.metodoEnvio}`,
       precio: costoEnvio,
       cantidad: 1
     });
@@ -420,7 +437,10 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
     const response = await fetch(`${BACKEND_URL}/api/crear-preferencia`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: itemsParaMP })
+      body: JSON.stringify({ 
+        items: itemsParaMP,
+        orderData: orderData // 👈 Enviamos los datos del comprador al backend
+      })
     });
 
     const data = await response.json();
@@ -434,7 +454,7 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
     console.error('Error:', error);
     alert('Hubo un problema. Te redirigimos a WhatsApp para completar tu pedido.');
     const mensaje = carrito.map(i => `• ${i.nombre} (Talle ${i.talle}) x${i.cantidad}`).join('%0A') 
-      + `%0A%0A*Datos de Entrega:*%0AMétodo: ${textoMetodo}%0ANombre: ${nombre}%0ATeléfono: ${telefono}`;
+      + `%0A%0A*Datos de Entrega:*%0AMétodo: ${orderData.metodoEnvio}%0ANombre: ${nombre}%0ATeléfono: ${telefono}`;
     window.open(`https://wa.me/5491128619100?text=Hola!%20Quiero%20hacer%20un%20pedido:%0A${mensaje}`, '_blank');
   } finally {
     btn.disabled = false;
