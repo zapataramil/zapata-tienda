@@ -35,12 +35,9 @@
 
   <!-- HERO CON VIDEO DE FONDO -->
   <section class="hero" id="hero-section">
-    
-    <!-- TU VIDEO -->
     <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200">
       <source src="img/video1.mp4" type="video/mp4">
     </video>
-
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
@@ -81,11 +78,7 @@
 
   <!-- PRODUCTOS -->
   <section id="productos" class="productos-section">
-    <!-- Se quitó el título y el "ver todos" de acá arriba -->
-    
     <div class="grid-productos" id="grid-productos"></div>
-
-    <!-- NUEVO BOTÓN "VER TODOS" ABAJO DE TODO -->
     <div class="ver-todos-container">
       <a href="#" class="ver-todos-btn" onclick="filtrarCategoria('todos')">Ver todos los productos <i class="fa-solid fa-arrow-right"></i></a>
     </div>
@@ -156,25 +149,104 @@
     </div>
   </div>
 
-  <!-- MODAL CARRITO CON ENVÍO -->
+  <!-- MODAL CARRITO CON NUEVOS DATOS DE ENTREGA -->
   <div id="modal-carrito" class="modal">
     <div class="modal-contenido">
       <div class="modal-header">
-        <h2>Tu Carrito</h2>
+        <h2>Finalizar Compra</h2>
         <button id="btn-cerrar-modal" class="btn-cerrar"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <ul id="lista-carrito"></ul>
-      <div class="envio-section">
-        <h3>Datos de Envío</h3>
-        <select id="zona-envio" onchange="actualizarCarrito()">
-          <option value="0">Retiro en Feria (Sin cargo)</option>
-          <option value="3000">CABA y GBA ($3.000)</option>
-          <option value="4500">Centro del País ($4.500)</option>
-          <option value="5500">Norte ($5.500)</option>
-          <option value="6500">Sur ($6.500)</option>
-        </select>
-        <input type="text" id="direccion-envio" placeholder="Ingresá tu dirección completa (Calle, N°, Localidad)" required>
+      
+      <div class="carrito-lista-wrap">
+        <ul id="lista-carrito"></ul>
       </div>
+      
+      <!-- SECCIÓN DE ENTREGA -->
+      <div class="checkout-section">
+        <h3>1. Método de Entrega</h3>
+        
+        <div class="metodos-entrega">
+          <label class="radio-card">
+            <input type="radio" name="metodo-entrega" value="domicilio" checked onchange="cambiarMetodoEntrega()">
+            <span class="radio-title">Envío a Domicilio</span>
+          </label>
+          
+          <label class="radio-card">
+            <input type="radio" name="metodo-entrega" value="retiro" onchange="cambiarMetodoEntrega()">
+            <span class="radio-title">Retiro en Tienda</span>
+          </label>
+          
+          <label class="radio-card">
+            <input type="radio" name="metodo-entrega" value="encuentro" onchange="cambiarMetodoEntrega()">
+            <span class="radio-title">Punto de Encuentro</span>
+          </label>
+        </div>
+
+        <!-- FORM DOMICILIO -->
+        <div id="form-domicilio" class="form-entrega">
+          <input type="text" id="dir-calle" placeholder="Dirección (Calle y número)" oninput="validarFormulario()">
+          <input type="text" id="dir-entre-calles" placeholder="Entre calles" oninput="validarFormulario()">
+          
+          <select id="dir-provincia" onchange="actualizarCarrito()">
+            <option value="">Seleccioná Provincia</option>
+            <option value="CABA">CABA</option>
+            <option value="Buenos Aires Conurbano Zona Sur">Buenos Aires Conurbano Zona Sur</option>
+            <option value="Buenos Aires">Buenos Aires</option>
+            <option value="Catamarca">Catamarca</option>
+            <option value="Chaco">Chaco</option>
+            <option value="Chubut">Chubut</option>
+            <option value="Córdoba">Córdoba</option>
+            <option value="Corrientes">Corrientes</option>
+            <option value="Entre Ríos">Entre Ríos</option>
+            <option value="Formosa">Formosa</option>
+            <option value="Jujuy">Jujuy</option>
+            <option value="La Pampa">La Pampa</option>
+            <option value="La Rioja">La Rioja</option>
+            <option value="Mendoza">Mendoza</option>
+            <option value="Misiones">Misiones</option>
+            <option value="Neuquén">Neuquén</option>
+            <option value="Río Negro">Río Negro</option>
+            <option value="Salta">Salta</option>
+            <option value="San Juan">San Juan</option>
+            <option value="San Luis">San Luis</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+            <option value="Santa Fe">Santa Fe</option>
+            <option value="Santiago del Estero">Santiago del Estero</option>
+            <option value="Tierra del Fuego">Tierra del Fuego</option>
+            <option value="Tucumán">Tucumán</option>
+          </select>
+          
+          <input type="text" id="dir-localidad" placeholder="Localidad" oninput="validarFormulario()">
+          <input type="text" id="dir-cp" placeholder="Código Postal" oninput="validarFormulario()">
+          <input type="text" id="dir-depto" placeholder="Departamento" value="casa" oninput="validarFormulario()">
+        </div>
+
+        <!-- INFO RETIRO -->
+        <div id="form-retiro" class="form-entrega" style="display: none;">
+          <div class="info-box">
+            <p><strong>Retirar en el domicilio del vendedor</strong></p>
+            <p>Wilde, Zona Sur Buenos Aires</p>
+            <p class="text-gratis">GRATIS</p>
+          </div>
+        </div>
+
+        <!-- INFO ENCUENTRO -->
+        <div id="form-encuentro" class="form-entrega" style="display: none;">
+          <div class="info-box">
+            <p><strong>Puntos de Encuentro (Exclusivo Zona Sur BsAs)</strong></p>
+            <p>Avellaneda, Lanús, Quilmes, Berazategui, Lomas de Zamora, Almirante Brown.</p>
+            <p style="margin-top: 5px; font-size: 0.85rem; color: #666;">Entrega en estaciones de tren, o lugares a coordinar.</p>
+            <p class="precio-encuentro">Costo: $3.000</p>
+          </div>
+        </div>
+
+        <h3>2. Datos de Contacto</h3>
+        <div class="form-contacto">
+          <input type="text" id="nombre-comprador" placeholder="Nombre completo" oninput="validarFormulario()">
+          <input type="tel" id="telefono-comprador" placeholder="Teléfono" oninput="validarFormulario()">
+        </div>
+      </div>
+
       <div class="modal-total">
         <div class="totales-desglose">
           <span>Subtotal: $<span id="subtotal-carrito">0</span></span>
@@ -185,9 +257,10 @@
           <span class="total-precio">$<span id="total">0</span></span>
         </div>
       </div>
+      
       <div class="modal-botones">
         <button id="btn-vaciar" class="btn-secundario">Vaciar</button>
-        <button id="btn-pagar" class="btn-pagar">Pagar con MercadoPago</button>
+        <button id="btn-pagar" class="btn-pagar" disabled>Pagar con MercadoPago</button>
       </div>
     </div>
   </div>
