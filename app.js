@@ -104,7 +104,7 @@ const productos = [
     imagenes: ['img/productos/vestido-aura-1.jpeg',
       'img/productos/vestido-aura-2.jpeg',
       'img/productos/vestido-aura-3.jpeg',
-      'img/productos/vestido-aura-4.jpeg],
+      'img/productos/vestido-aura-4.jpeg'],
                
     descripcion: 'Vestido Aura, diseño exclusivo de ZAPATA. Elegante y con una caída increíble.',
     talles: ['S-M'], 
