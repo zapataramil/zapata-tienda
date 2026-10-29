@@ -24,24 +24,6 @@ let cantidadSeleccionada = 1;
 let tallesCardSeleccionados = {}; 
 let coloresCardSeleccionados = {};
 
-// ==================== CARRUSEL ====================
-let slideActual = 0;
-const slides = document.querySelectorAll('.hero-bg');
-const dots = document.querySelectorAll('.dot');
-
-function cambiarSlide(index) {
-  slides.forEach(s => s.classList.remove('active'));
-  dots.forEach(d => d.classList.remove('active'));
-  slides[index].classList.add('active');
-  dots[index].classList.add('active');
-  slideActual = index;
-}
-
-setInterval(() => {
-  slideActual = (slideActual + 1) % slides.length;
-  cambiarSlide(slideActual);
-}, 5000);
-
 // ==================== FILTRO CATEGORÍAS ====================
 function filtrarCategoria(cat) {
   const titulo = document.getElementById('titulo-categoria');
@@ -294,7 +276,7 @@ function actualizarCarrito() {
   stickyTotal.textContent = subtotal.toLocaleString('es-AR');
 }
 
-// ==================== LÓGICA DE SCROLL (HEADER Y CARRITO) ====================
+// ==================== LÓGICA DE SCROLL ====================
 let lastScrollTop = 0;
 const stickyCartBar = document.getElementById('sticky-cart');
 const mainHeader = document.getElementById('main-header');
@@ -358,7 +340,6 @@ const btnCorazonFooter = document.getElementById('btn-footer-heart');
 
 if (btnCorazonFooter) {
   btnCorazonFooter.addEventListener('click', (e) => {
-    // Efecto de latido al hacer clic
     e.target.style.transform = 'scale(1.5)';
     setTimeout(() => { e.target.style.transform = 'scale(1)'; }, 200);
 
@@ -367,23 +348,17 @@ if (btnCorazonFooter) {
     const startX = rect.left + rect.width / 2;
     const startY = rect.top;
 
-    // Creamos 12 flores
     for (let i = 0; i < 12; i++) {
       setTimeout(() => {
         const flor = document.createElement('div');
         flor.className = 'flor-animada';
         flor.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        
-        // Hacemos que salgan un poquito para los costados
         const offsetX = (Math.random() - 0.5) * 150; 
         flor.style.left = `${startX + offsetX}px`;
         flor.style.top = `${startY}px`;
-        
         document.body.appendChild(flor);
-
-        // Borramos la flor del HTML después de que termina la animación
         setTimeout(() => flor.remove(), 2000);
-      }, i * 100); // Van saliendo de a una (delay de 100ms)
+      }, i * 100);
     }
   });
 }
