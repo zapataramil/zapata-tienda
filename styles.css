@@ -20,30 +20,26 @@ button { font-family: inherit; cursor: pointer; }
   top: 0; 
   width: 100%;
   z-index: 100; 
-  background: transparent; /* Arranca transparente */
+  background: transparent;
   transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Cuando bajas, se vuelve rosa con vidrio */
 /* Al bajar, FONDO NEGRO con vidrio esmerilado */
 .main-header.scrolled {
-  background: rgba(13, 13, 13, 0.85); /* Negro transparente */
+  background: rgba(13, 13, 13, 0.85); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* Sombra oscura */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4); 
 }
 
 .header-top { display: flex; justify-content: space-between; align-items: center; padding: 1rem 4rem; max-width: 1500px; margin: 0 auto; }
 .logo-img { height: 70px; transition: 0.3s; } 
 
-/* El menú Inicio y Tienda */
 .main-nav { display: flex; gap: 2.5rem; transition: opacity 0.3s ease, transform 0.3s ease; }
-/* Cuando bajo, hago que los links desaparezcan suavemente */
 .main-header.scrolled .main-nav { opacity: 0; pointer-events: none; transform: translateY(-10px); }
 
 .main-nav a { color: var(--rosa); font-size: 0.95rem; font-weight: 600; position: relative; padding-bottom: 5px; transition: 0.3s; }
 .main-nav a.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--rosa); }
-/* Al hacer scroll, si los links siguen visibles (en compu), se vuelven blancos para contrastar con el rosa */
 .main-header.scrolled .main-nav a { color: var(--blanco); }
 .main-header.scrolled .main-nav a.active::after { background: var(--blanco); }
 
@@ -52,7 +48,6 @@ button { font-family: inherit; cursor: pointer; }
 #contador { position: absolute; top: -8px; right: -10px; background: var(--blanco); color: var(--rosa); font-size: 0.75rem; font-weight: 800; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
 /* ==================== HERO CON CARRUSEL ==================== */
-/* El padding-top de 10rem asegura que el texto no choque con el menú */
 .hero { display: flex; justify-content: space-between; align-items: center; padding: 10rem 4rem 0 4rem; max-width: 1500px; margin: 0 auto; min-height: 650px; position: relative; overflow: hidden; background: var(--negro); }
 .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out; z-index: 1; }
 .hero-bg.active { opacity: 0.45; }
@@ -74,18 +69,21 @@ button { font-family: inherit; cursor: pointer; }
 .dot { width: 12px; height: 12px; background: rgba(255,255,255,0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
 .dot.active { background: var(--rosa); transform: scale(1.2); box-shadow: 0 0 10px rgba(255, 20, 147, 0.5); }
 
-/* ==================== EL RESTO DEL CSS ==================== */
+/* ==================== CATEGORIAS ==================== */
 .categorias { display: flex; justify-content: center; align-items: flex-start; gap: 4rem; padding: 3rem 2rem; background: var(--blanco); border-bottom: 1px solid #eee; flex-wrap: wrap; }
 .categoria-item { display: flex; flex-direction: column; align-items: center; gap: 1rem; cursor: pointer; transition: 0.3s; width: 80px; }
 .categoria-item:hover { transform: translateY(-5px); }
 .cat-icon { width: 70px; height: 70px; border: 2px solid var(--rosa); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--rosa); transition: 0.3s; background: var(--blanco); }
 .categoria-item:hover .cat-icon { background: var(--rosa); color: var(--blanco); }
 .categoria-item p { font-size: 0.85rem; font-weight: 500; color: var(--negro); text-align: center; }
+
+/* ==================== PRODUCTOS ==================== */
 .productos-section { max-width: 1300px; margin: 0 auto; padding: 4rem 2rem; background: var(--blanco); }
 .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
 .section-header h2 { font-size: 1.5rem; font-weight: 700; }
 .ver-todos { color: var(--rosa); font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
 .grid-productos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+
 .card-producto { background: var(--blanco); border-radius: 8px; overflow: hidden; position: relative; transition: 0.3s; border: 1px solid transparent; }
 .card-producto:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: #eee; }
 .card-badge { position: absolute; top: 15px; left: 15px; background: var(--rosa); color: var(--blanco); font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; z-index: 10; }
@@ -99,6 +97,7 @@ button { font-family: inherit; cursor: pointer; }
 .info-producto h3 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.5rem; cursor: pointer; }
 .precio { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
 .precio-viejo { font-size: 0.85rem; color: #999; text-decoration: line-through; font-weight: 400; }
+
 .card-variaciones { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
 .card-colores { display: flex; gap: 6px; }
 .color-btn { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; transition: 0.2s; }
@@ -107,10 +106,11 @@ button { font-family: inherit; cursor: pointer; }
 .talle-btn { width: 28px; height: 28px; border-radius: 4px; border: 1px solid #ddd; background: transparent; font-size: 0.7rem; color: var(--negro); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
 .talle-btn:hover { border-color: var(--rosa); }
 .talle-btn.activo { background: var(--rosa); color: var(--blanco); border-color: var(--rosa); }
+
 .btn-agregar-card { width: 100%; background: var(--rosa); color: var(--blanco); border: none; padding: 0.8rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
 .btn-agregar-card:hover { background: var(--rosa-hover); }
 
-/* CARRITO FLOTANTE (Con contraste para el fondo blanco) */
+/* ==================== BARRA CARRITO FLOTANTE ==================== */
 .sticky-cart { 
   position: fixed; 
   bottom: 20px; 
@@ -118,13 +118,13 @@ button { font-family: inherit; cursor: pointer; }
   transform: translate(-50%, 150%); 
   width: 90%; 
   max-width: 1000px; 
-  background: rgba(255, 255, 255, 0.95); /* Blanco sólido semi-transparente */
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px); 
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 20, 147, 0.4); /* Borde rosa */
+  border: 1px solid rgba(255, 20, 147, 0.4);
   padding: 1rem 1.5rem; 
   border-radius: 50px; 
-  box-shadow: 0 10px 30px rgba(255, 20, 147, 0.15); /* Sombra rosa */
+  box-shadow: 0 10px 30px rgba(255, 20, 147, 0.15);
   z-index: 99; 
   transition: transform 0.4s ease, opacity 0.3s ease; 
   opacity: 0;
@@ -137,8 +137,43 @@ button { font-family: inherit; cursor: pointer; }
 .btn-finalizar { background: var(--rosa); color: var(--blanco); border: none; padding: 0.8rem 1.5rem; border-radius: 30px; font-weight: 600; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
 .btn-finalizar:hover { background: var(--rosa-hover); }
 
-footer { background: var(--negro); color: var(--blanco); padding: 3rem 4rem 1rem 4rem; margin-top: 0; }
-.footer-content { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 2rem; }
+/* ==================== FOOTER CON Z DE NEÓN ==================== */
+footer { 
+  background: var(--negro); 
+  color: var(--blanco); 
+  padding: 3rem 4rem 1rem 4rem; 
+  margin-top: 0; 
+  position: relative; 
+  overflow: hidden; 
+}
+
+/* La Z de neón gigante */
+footer::before {
+  content: 'Z';
+  position: absolute;
+  bottom: -8rem;
+  right: -2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40rem; 
+  font-weight: 800;
+  color: rgba(255, 20, 147, 0.08); /* Muy transparente */
+  text-shadow: 0 0 60px rgba(255, 20, 147, 0.4), 0 0 120px rgba(255, 20, 147, 0.2); /* Brillo neón */
+  z-index: 0;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.footer-content { 
+  position: relative;
+  z-index: 1;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  max-width: 1300px; 
+  margin: 0 auto; 
+  border-bottom: 1px solid #333; 
+  padding-bottom: 2rem; 
+}
 .footer-col { flex: 1; }
 .logo-col { display: flex; flex-direction: column; gap: 10px; }
 .footer-z-custom { font-size: 6rem; font-weight: 800; color: var(--rosa); line-height: 0.8; position: relative; display: inline-block; width: fit-content; }
@@ -148,9 +183,16 @@ footer { background: var(--negro); color: var(--blanco); padding: 3rem 4rem 1rem
 .footer-contacto a { display: flex; align-items: center; gap: 8px; color: var(--blanco); transition: 0.3s; }
 .footer-contacto a:hover { color: var(--rosa); }
 .footer-contacto i { color: var(--rosa); font-size: 1.2rem; }
-.footer-bottom { text-align: center; padding-top: 1.5rem; font-size: 0.75rem; color: #666; }
+.footer-bottom { 
+  position: relative;
+  z-index: 1;
+  text-align: center; 
+  padding-top: 1.5rem; 
+  font-size: 0.75rem; 
+  color: #666; 
+}
 
-/* MODALES */
+/* ==================== MODALES ==================== */
 .modal { display: none; position: fixed; inset: 0; background: rgba(13,13,13,0.85); justify-content: center; align-items: center; z-index: 200; backdrop-filter: blur(4px); padding: 1rem; }
 .modal.activo { display: flex; }
 .modal-contenido { background: var(--blanco); border-radius: 16px; padding: 2rem; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; position: relative; }
@@ -223,32 +265,15 @@ footer { background: var(--negro); color: var(--blanco); padding: 3rem 4rem 1rem
 @media (max-width: 768px) {
   .grid-productos { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   
-  /* Acomodo el header en celular para que quede prolijo */
-  .header-top { 
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: center;
-    padding: 1rem; 
-    gap: 0.5rem;
-  }
+  .header-top { flex-direction: row; justify-content: space-between; align-items: center; padding: 1rem; gap: 0.5rem; }
   .logo-img { height: 50px; } 
-  
-  .main-nav { 
-    gap: 1rem; 
-    position: static; /* Quitamos el absolute que lo tiraba abajo */
-  }
+  .main-nav { gap: 1rem; position: static; }
   .main-nav a { font-size: 0.85rem; }
 
   .hero { padding: 8rem 1rem 2rem 1rem; }
   .hero-title { font-size: 2.2rem; margin-bottom: 1rem; }
   .hero-desc { font-size: 0.9rem; margin-bottom: 1.5rem; }
-  
-  .hero-image img { 
-    max-height: 250px; 
-    border-radius: 15px; 
-    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-  }
+  .hero-image img { max-height: 250px; border-radius: 15px; box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4); border: 2px solid rgba(255, 255, 255, 0.1); }
 
   .categorias { gap: 1rem; padding: 2rem 1rem; justify-content: space-evenly; }
   .categoria-item { width: 65px; }
@@ -267,6 +292,13 @@ footer { background: var(--negro); color: var(--blanco); padding: 3rem 4rem 1rem
   .galeria { border-radius: 16px 16px 0 0; padding: 1rem; }
   .galeria-principal img { height: 350px; }
   .producto-info { padding: 1.5rem; }
+
+  /* Achicamos la Z de neón en celular */
+  footer::before {
+    font-size: 18rem; 
+    bottom: -2rem;
+    right: -1rem;
+  }
 }
 
 @media (max-width: 480px) {
