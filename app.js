@@ -302,14 +302,12 @@ const mainHeader = document.getElementById('main-header');
 window.addEventListener('scroll', () => {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   
-  // 1. Efecto del Header (Se vuelve rosa con vidrio al bajar)
   if (scrollTop > 50) {
     mainHeader.classList.add('scrolled');
   } else {
     mainHeader.classList.remove('scrolled');
   }
 
-  // 2. Efecto del Carrito (Se esconde al bajar, aparece al subir)
   if (carrito.length === 0) return;
 
   if (scrollTop > lastScrollTop && scrollTop > 100) {
@@ -354,6 +352,41 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('modal-talles').classList.remove('activo');
   }
 });
+
+// ==================== CORAZÓN CON FLORES ====================
+const btnCorazonFooter = document.getElementById('btn-footer-heart');
+
+if (btnCorazonFooter) {
+  btnCorazonFooter.addEventListener('click', (e) => {
+    // Efecto de latido al hacer clic
+    e.target.style.transform = 'scale(1.5)';
+    setTimeout(() => { e.target.style.transform = 'scale(1)'; }, 200);
+
+    const emojis = ['🌸', '🌺', '🌷', '🌹', '💐', '✨'];
+    const rect = e.target.getBoundingClientRect();
+    const startX = rect.left + rect.width / 2;
+    const startY = rect.top;
+
+    // Creamos 12 flores
+    for (let i = 0; i < 12; i++) {
+      setTimeout(() => {
+        const flor = document.createElement('div');
+        flor.className = 'flor-animada';
+        flor.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Hacemos que salgan un poquito para los costados
+        const offsetX = (Math.random() - 0.5) * 150; 
+        flor.style.left = `${startX + offsetX}px`;
+        flor.style.top = `${startY}px`;
+        
+        document.body.appendChild(flor);
+
+        // Borramos la flor del HTML después de que termina la animación
+        setTimeout(() => flor.remove(), 2000);
+      }, i * 100); // Van saliendo de a una (delay de 100ms)
+    }
+  });
+}
 
 // ==================== PAGAR ====================
 document.getElementById('btn-pagar').addEventListener('click', async () => {
