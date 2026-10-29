@@ -24,20 +24,16 @@ let cantidadSeleccionada = 1;
 let tallesCardSeleccionados = {}; 
 let coloresCardSeleccionados = {};
 
-// ==================== FUNCIÓN DE FLORES (GLOBAL) ====================
+// ==================== FUNCIÓN DE FLORES ====================
 function lanzarFlores(e) {
-  // Evitamos que al tocar el corazón se abra el producto
   if (e.stopPropagation) e.stopPropagation();
-
-  const elemento = e.currentTarget; // El botón o corazón clickeado
+  const elemento = e.currentTarget;
   elemento.style.transform = 'scale(1.5)';
   setTimeout(() => { elemento.style.transform = 'scale(1)'; }, 200);
-
   const emojis = ['🌸', '🌺', '🌷', '🌹', '💐', '✨'];
   const rect = elemento.getBoundingClientRect();
   const startX = rect.left + rect.width / 2;
   const startY = rect.top;
-
   for (let i = 0; i < 12; i++) {
     setTimeout(() => {
       const flor = document.createElement('div');
@@ -52,16 +48,47 @@ function lanzarFlores(e) {
   }
 }
 
+// ==================== LÓGICA DE ENTREGA Y VALIDACIÓN ====================
+function cambiarMetodoEntrega() {
+  const metodo = document.querySelector('input[name="metodo-entrega"]:checked').value;
+  
+  document.getElementById('form-domicilio').style.display = metodo === 'domicilio' ? 'block' : 'none';
+  document.getElementById('form-retiro').style.display = metodo === 'retiro' ? 'block' : 'none';
+  document.getElementById('form-encuentro').style.display = metodo === 'encuentro' ? 'block' : 'none';
+  
+  actualizarCarrito(); 
+}
+
+function validarFormulario() {
+  const metodo = document.querySelector('input[name="metodo-entrega"]:checked').value;
+  const nombre = document.getElementById('nombre-comprador').value.trim();
+  const telefono = document.getElementById('telefono-comprador').value.trim();
+  
+  let valido = (nombre !== '' && telefono !== '');
+
+  if (metodo === 'domicilio') {
+    const dir = document.getElementById('dir-calle').value.trim();
+    const entre = document.getElementById('dir-entre-calles').value.trim();
+    const prov = document.getElementById('dir-provincia').value;
+    const loc = document.getElementById('dir-localidad').value.trim();
+    const cp = document.getElementById('dir-cp').value.trim();
+    
+    if (!dir || !entre || !prov || !loc || !cp) {
+      valido = false;
+    }
+  }
+
+  const btnPagar = document.getElementById('btn-pagar');
+  if (valido && carrito.length > 0) {
+    btnPagar.disabled = false;
+  } else {
+    btnPagar.disabled = true;
+  }
+}
+
 // ==================== FILTRO CATEGORÍAS ====================
 function filtrarCategoria(cat) {
-  let filtrados = [];
-  
-  if (cat === 'todos') {
-    filtrados = productos;
-  } else {
-    filtrados = productos.filter(p => p.categoria === cat);
-  }
-  
+  let filtrados = cat === 'todos' ? productos : productos.filter(p => p.categoria === cat);
   renderizarProductos(filtrados);
   document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
 }
@@ -76,8 +103,6 @@ function renderizarProductos(lista = productos) {
     return `
     <div class="card-producto">
       ${p.badge ? `<span class="card-badge ${p.badge === '-20%' ? 'badge-sale' : ''}">${p.badge}</span>` : ''}
-      
-      <!-- ACÁ AGREGAMOS EL EVENTO AL CORAZÓN -->
       <button class="btn-fav" onclick="lanzarFlores(event)"><i class="fa-regular fa-heart"></i></button>
       
       <div class="card-img-wrap" onclick="abrirDetalle(${p.id})">
@@ -135,15 +160,8 @@ function agregarDesdeCard(idProducto) {
   const talle = tallesCardSeleccionados[idProducto];
   const color = coloresCardSeleccionados[idProducto];
   
-  if (!talle) {
-    alert('Por favor, seleccioná un talle antes de agregar al carrito.');
-    return;
-  }
-  
-  if (!color) {
-    alert('Por favor, seleccioná un color antes de agregar al carrito.');
-    return;
-  }
+  if (!talle) { alert('Por favor, seleccioná un talle antes de agregar al carrito.'); return; }
+  if (!color) { alert('Por favor, seleccioná un color antes de agregar al carrito.'); return; }
   
   agregarAlCarritoConVariantes(producto, talle, color, 1);
 }
@@ -190,22 +208,9 @@ function actualizarGaleria() {
   `).join('');
 }
 
-function cambiarImagen(index) {
-  imagenActualIndex = index;
-  actualizarGaleria();
-}
-
-document.getElementById('galeria-prev').addEventListener('click', () => {
-  if (!productoActual) return;
-  imagenActualIndex = (imagenActualIndex - 1 + productoActual.imagenes.length) % productoActual.imagenes.length;
-  actualizarGaleria();
-});
-
-document.getElementById('galeria-next').addEventListener('click', () => {
-  if (!productoActual) return;
-  imagenActualIndex = (imagenActualIndex + 1) % productoActual.imagenes.length;
-  actualizarGaleria();
-});
+function cambiarImagen(index) { imagenActualIndex = index; actualizarGaleria(); }
+document.getElementById('galeria-prev').addEventListener('click', () => { if (productoActual) { imagenActualIndex = (imagenActualIndex - 1 + productoActual.imagenes.length) % productoActual.imagenes.length; actualizarGaleria(); } });
+document.getElementById('galeria-next').addEventListener('click', () => { if (productoActual) { imagenActualIndex = (imagenActualIndex + 1) % productoActual.imagenes.length; actualizarGaleria(); } });
 
 function seleccionarTalle(talle, btn) {
   talleSeleccionado = talle;
@@ -219,27 +224,17 @@ function seleccionarColor(nombre, hex, btn) {
   btn.classList.add('seleccionado');
 }
 
-document.getElementById('btn-sumar').addEventListener('click', () => {
-  cantidadSeleccionada++;
-  document.getElementById('input-cantidad').value = cantidadSeleccionada;
-});
-
-document.getElementById('btn-restar').addEventListener('click', () => {
-  if (cantidadSeleccionada > 1) {
-    cantidadSeleccionada--;
-    document.getElementById('input-cantidad').value = cantidadSeleccionada;
-  }
-});
+document.getElementById('btn-sumar').addEventListener('click', () => { cantidadSeleccionada++; document.getElementById('input-cantidad').value = cantidadSeleccionada; });
+document.getElementById('btn-restar').addEventListener('click', () => { if (cantidadSeleccionada > 1) { cantidadSeleccionada--; document.getElementById('input-cantidad').value = cantidadSeleccionada; } });
 
 document.getElementById('btn-agregar-detalle').addEventListener('click', () => {
   if (!talleSeleccionado) { alert('Por favor, elegí un talle antes de continuar.'); return; }
   if (!colorSeleccionado) { alert('Por favor, elegí un color antes de continuar.'); return; }
-
   agregarAlCarritoConVariantes(productoActual, talleSeleccionado, colorSeleccionado.nombre, cantidadSeleccionada);
   cerrarModalProducto();
 });
 
-// ==================== CARRITO Y ENVÍO ====================
+// ==================== CARRITO Y TOTALES ====================
 function agregarAlCarritoConVariantes(producto, talle, color, cantidad) {
   const idUnico = `${producto.id}-${talle}-${color}`;
   const existente = carrito.find(item => item.idUnico === idUnico);
@@ -247,10 +242,7 @@ function agregarAlCarritoConVariantes(producto, talle, color, cantidad) {
   if (existente) {
     existente.cantidad += cantidad;
   } else {
-    carrito.push({
-      idUnico, id: producto.id, nombre: producto.nombre, precio: producto.precio,
-      imagen: producto.imagenes[0], talle, color, cantidad
-    });
+    carrito.push({ idUnico, id: producto.id, nombre: producto.nombre, precio: producto.precio, imagen: producto.imagenes[0], talle, color, cantidad });
   }
 
   guardarCarrito();
@@ -258,9 +250,7 @@ function agregarAlCarritoConVariantes(producto, talle, color, cantidad) {
   document.getElementById('modal-carrito').classList.add('activo');
 }
 
-function guardarCarrito() {
-  localStorage.setItem('zapata-carrito', JSON.stringify(carrito));
-}
+function guardarCarrito() { localStorage.setItem('zapata-carrito', JSON.stringify(carrito)); }
 
 function actualizarCarrito() {
   const contador = document.getElementById('contador');
@@ -293,14 +283,40 @@ function actualizarCarrito() {
     stickyCartBar.classList.add('visible');
   }
 
+  // ==================== CÁLCULO DE ENVÍO DINÁMICO ====================
+  const metodo = document.querySelector('input[name="metodo-entrega"]:checked').value;
+  let costoEnvio = 0;
+  
+  if (metodo === 'domicilio') {
+    const provinciaSeleccionada = document.getElementById('dir-provincia').value;
+    
+    if (provinciaSeleccionada === 'CABA') {
+      costoEnvio = 9000;
+    } else if (provinciaSeleccionada === 'Buenos Aires Conurbano Zona Sur') {
+      costoEnvio = 8000;
+    } else if (provinciaSeleccionada === 'Buenos Aires') {
+      costoEnvio = 19900;
+    } else if (provinciaSeleccionada !== '') {
+      costoEnvio = 26900; // Cualquier otra provincia
+    } else {
+      costoEnvio = 0; // Si no eligió nada todavía
+    }
+
+  } else if (metodo === 'encuentro') {
+    costoEnvio = 3000;
+  } else {
+    costoEnvio = 0; // Retiro es gratis
+  }
+
   const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-  const costoEnvio = parseInt(document.getElementById('zona-envio').value) || 0;
   const total = subtotal + costoEnvio;
 
   subtotalSpan.textContent = subtotal.toLocaleString('es-AR');
   envioSpan.textContent = costoEnvio.toLocaleString('es-AR');
   totalSpan.textContent = total.toLocaleString('es-AR');
   stickyTotal.textContent = subtotal.toLocaleString('es-AR');
+  
+  validarFormulario();
 }
 
 // ==================== LÓGICA DE SCROLL ====================
@@ -310,21 +326,9 @@ const mainHeader = document.getElementById('main-header');
 
 window.addEventListener('scroll', () => {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  
-  if (scrollTop > 50) {
-    mainHeader.classList.add('scrolled');
-  } else {
-    mainHeader.classList.remove('scrolled');
-  }
-
+  if (scrollTop > 50) { mainHeader.classList.add('scrolled'); } else { mainHeader.classList.remove('scrolled'); }
   if (carrito.length === 0) return;
-
-  if (scrollTop > lastScrollTop && scrollTop > 100) {
-    stickyCartBar.classList.remove('visible');
-  } else {
-    stickyCartBar.classList.add('visible');
-  }
-  
+  if (scrollTop > lastScrollTop && scrollTop > 100) { stickyCartBar.classList.remove('visible'); } else { stickyCartBar.classList.add('visible'); }
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
@@ -336,7 +340,6 @@ function cerrarModalProducto() {
 
 document.getElementById('btn-cerrar-producto').addEventListener('click', cerrarModalProducto);
 document.getElementById('modal-producto').addEventListener('click', (e) => { if (e.target.id === 'modal-producto') cerrarModalProducto(); });
-
 document.getElementById('btn-guia-talles').addEventListener('click', () => document.getElementById('modal-talles').classList.add('activo'));
 document.getElementById('btn-cerrar-talles').addEventListener('click', () => document.getElementById('modal-talles').classList.remove('activo'));
 document.getElementById('modal-talles').addEventListener('click', (e) => { if (e.target.id === 'modal-talles') e.target.classList.remove('activo'); });
@@ -364,20 +367,22 @@ document.addEventListener('keydown', (e) => {
 
 // ==================== CORAZÓN DEL FOOTER ====================
 const btnCorazonFooter = document.getElementById('btn-footer-heart');
-
-// Ahora el footer usa la misma función de flores
-if (btnCorazonFooter) {
-  btnCorazonFooter.addEventListener('click', lanzarFlores);
-}
+if (btnCorazonFooter) { btnCorazonFooter.addEventListener('click', lanzarFlores); }
 
 // ==================== PAGAR ====================
 document.getElementById('btn-pagar').addEventListener('click', async () => {
   if (carrito.length === 0) { alert('Tu carrito está vacío.'); return; }
-
-  const direccion = document.getElementById('direccion-envio').value.trim();
-  if (!direccion) {
-    alert('Por favor, ingresá tu dirección de envío antes de pagar.');
-    return;
+  
+  const metodo = document.querySelector('input[name="metodo-entrega"]:checked').value;
+  const nombre = document.getElementById('nombre-comprador').value.trim();
+  const telefono = document.getElementById('telefono-comprador').value.trim();
+  
+  if (!nombre || !telefono) { alert('Por favor, completá tus datos de contacto.'); return; }
+  
+  if (metodo === 'domicilio') {
+    const dir = document.getElementById('dir-calle').value.trim();
+    const loc = document.getElementById('dir-localidad').value.trim();
+    if (!dir || !loc) { alert('Por favor, completá tu dirección y localidad.'); return; }
   }
 
   const btn = document.getElementById('btn-pagar');
@@ -385,8 +390,17 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
   btn.textContent = 'Redirigiendo...';
 
   const subtotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-  const costoEnvio = parseInt(document.getElementById('zona-envio').value) || 0;
-  const zonaTexto = document.getElementById('zona-envio').options[document.getElementById('zona-envio').selectedIndex].text;
+  const costoEnvio = parseInt(document.getElementById('costo-envio').textContent.replace(/\./g, '')) || 0;
+  
+  let textoMetodo = "";
+  if(metodo === 'domicilio') {
+    const prov = document.getElementById('dir-provincia').value;
+    textoMetodo = `Envío a Domicilio (${document.getElementById('dir-calle').value}, ${document.getElementById('dir-localidad').value}, ${prov})`;
+  } else if (metodo === 'retiro') {
+    textoMetodo = "Retiro en Tienda (Wilde)";
+  } else {
+    textoMetodo = "Punto de Encuentro (Zona Sur)";
+  }
 
   let itemsParaMP = carrito.map(item => ({
     nombre: `${item.nombre} (Talle ${item.talle}, ${item.color})`,
@@ -396,7 +410,7 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
 
   if (costoEnvio > 0) {
     itemsParaMP.push({
-      nombre: `Costo de Envío (${zonaTexto})`,
+      nombre: `Costo de Envío - ${textoMetodo}`,
       precio: costoEnvio,
       cantidad: 1
     });
@@ -419,7 +433,8 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
   } catch (error) {
     console.error('Error:', error);
     alert('Hubo un problema. Te redirigimos a WhatsApp para completar tu pedido.');
-    const mensaje = carrito.map(i => `• ${i.nombre} (Talle ${i.talle}) x${i.cantidad}`).join('%0A') + `%0A%0AEnv\u00edo a: ${direccion} (${zonaTexto})`;
+    const mensaje = carrito.map(i => `• ${i.nombre} (Talle ${i.talle}) x${i.cantidad}`).join('%0A') 
+      + `%0A%0A*Datos de Entrega:*%0AMétodo: ${textoMetodo}%0ANombre: ${nombre}%0ATeléfono: ${telefono}`;
     window.open(`https://wa.me/5491128619100?text=Hola!%20Quiero%20hacer%20un%20pedido:%0A${mensaje}`, '_blank');
   } finally {
     btn.disabled = false;
@@ -430,3 +445,4 @@ document.getElementById('btn-pagar').addEventListener('click', async () => {
 // ==================== INIT ====================
 renderizarProductos();
 actualizarCarrito();
+cambiarMetodoEntrega();
