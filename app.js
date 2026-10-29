@@ -302,7 +302,7 @@ const mainHeader = document.getElementById('main-header');
 window.addEventListener('scroll', () => {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   
-  // 1. Efecto del Header (Se vuelve rosa al bajar)
+  // 1. Efecto del Header (Se vuelve rosa con vidrio al bajar)
   if (scrollTop > 50) {
     mainHeader.classList.add('scrolled');
   } else {
