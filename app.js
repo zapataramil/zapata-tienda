@@ -10,9 +10,7 @@ const productos = [
     precio: 30000,
     badge: 'NUEVO',
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800'],
     descripcion: 'Campera engomada de excelente calidad. Ideal para días de lluvia o looks urbanos.',
     talles: ['2', '3', '4'],
     colores: [
@@ -27,9 +25,7 @@ const productos = [
     precio: 22000,
     badge: null,
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'],
     descripcion: 'Campera top engomada, tiro corto. Súper versátil.',
     talles: ['2', '4'],
     colores: [
@@ -44,11 +40,9 @@ const productos = [
     precio: 10000,
     badge: null,
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800'],
     descripcion: 'Remera de microtull con detalles de encaje. Muy delicada y femenina.',
-    talles: ['S', 'M'],
+    talles: ['S-M'], // Talle único que cubre S y M
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
@@ -60,11 +54,9 @@ const productos = [
     precio: 11000,
     badge: null,
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800'],
     descripcion: 'Remera de corte holgado (boxy fit). Súper cómoda para el día a día.',
-    talles: ['M', 'XL'],
+    talles: ['M-XL'], // Talle único que cubre M a XL
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Celeste', hex: '#87CEEB' },
@@ -79,11 +71,9 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800'],
     descripcion: 'Remera oversize, caída perfecta. Un básico que no puede faltar.',
-    talles: ['M', 'XL'],
+    talles: ['M-XL'], 
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Beige', hex: '#F5F5DC' }
@@ -95,11 +85,9 @@ const productos = [
     precio: 11000,
     badge: null,
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800'],
     descripcion: 'Remera básica de algodón. Calidad premium.',
-    talles: ['S', 'L'],
+    talles: ['S-L'], 
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
@@ -111,11 +99,9 @@ const productos = [
     precio: 24000,
     badge: 'NUEVO',
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800'],
     descripcion: 'Vestido Aura, diseño exclusivo de ZAPATA. Elegante y con una caída increíble.',
-    talles: ['S', 'M'],
+    talles: ['S-M'], 
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Bordo', hex: '#800000' },
@@ -129,11 +115,9 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1564257577352-c2e2c4c1e7d0?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1564257577352-c2e2c4c1e7d0?w=800'],
     descripcion: 'Body de microtull con encaje. Ideal para looks nocturnos.',
-    talles: ['S', 'M'],
+    talles: ['S-M'],
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ]
@@ -144,11 +128,9 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1515347619152-6467b52c4849?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1515347619152-6467b52c4849?w=800'],
     descripcion: 'Body Luna, tela elastizada que se adapta perfecto al cuerpo.',
-    talles: ['S', 'M'],
+    talles: ['S-M'],
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ]
@@ -159,11 +141,9 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: [
-      'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=800'
-    ],
+    imagenes: ['https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=800'],
     descripcion: 'Body con cierre delantero. Detalle súper moderno.',
-    talles: ['S', 'M'],
+    talles: ['S-M'],
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ]
@@ -253,6 +233,7 @@ function filtrarCategoria(cat) {
 function renderizarProductos(lista = productos) {
   const grid = document.getElementById('grid-productos');
   grid.innerHTML = lista.map(p => {
+    // Si solo hay un talle (como "S-M"), lo seleccionamos automáticamente
     if (p.talles.length === 1) tallesCardSeleccionados[p.id] = p.talles[0];
     if (p.colores.length === 1) coloresCardSeleccionados[p.id] = p.colores[0].nombre;
 
