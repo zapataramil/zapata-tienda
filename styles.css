@@ -313,7 +313,13 @@ footer::before {
   .hero-content { padding-bottom: 2rem; }
   .hero-desc { margin: 0 auto 2rem auto; }
   .hero-image { justify-content: center; margin-bottom: 2rem;}
-  .hero-image img { max-height: 300px; }
+  .hero-image img { 
+  max-height: 500px; 
+  object-fit: cover; 
+  border-radius: 30px; /* Esquinas bien redondas */
+  border: 3px solid rgba(255, 20, 147, 0.8); /* Borde rosa neón */
+  box-shadow: 0 0 30px rgba(255, 20, 147, 0.5), 0 10px 30px rgba(0,0,0,0.6); /* Brillo neón + sombra */
+}
   .header-top { padding: 1rem 2rem; }
 }
 
