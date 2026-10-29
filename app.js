@@ -25,7 +25,9 @@ const productos = [
     precio: 22000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'],
+    imagenes: ['img/productos/campera-engomada-1.jpeg',
+      'img/productos/campera-engomada-2.jpeg',
+      'img/productos/campera-engomada-3.jpeg'],
     descripcion: 'Campera top engomada, tiro corto. Súper versátil.',
     talles: ['2', '4'],
     colores: [
@@ -99,7 +101,11 @@ const productos = [
     precio: 24000,
     badge: 'NUEVO',
     categoria: 'ropa',
-    imagenes: ['https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800'],
+    imagenes: ['img/productos/vestido-aura-1.jpeg',
+      'img/productos/vestido-aura-2.jpeg',
+      'img/productos/vestido-aura-3.jpeg',
+      'img/productos/vestido-aura-4.jpeg],
+               
     descripcion: 'Vestido Aura, diseño exclusivo de ZAPATA. Elegante y con una caída increíble.',
     talles: ['S-M'], 
     colores: [
