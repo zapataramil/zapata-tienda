@@ -26,15 +26,12 @@ let coloresCardSeleccionados = {};
 
 // ==================== FILTRO CATEGORÍAS ====================
 function filtrarCategoria(cat) {
-  const titulo = document.getElementById('titulo-categoria');
   let filtrados = [];
   
   if (cat === 'todos') {
     filtrados = productos;
-    titulo.textContent = 'Productos destacados';
   } else {
     filtrados = productos.filter(p => p.categoria === cat);
-    titulo.textContent = cat.charAt(0).toUpperCase() + cat.slice(1).replace('-', ' ');
   }
   
   renderizarProductos(filtrados);
