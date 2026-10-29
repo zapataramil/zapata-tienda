@@ -12,8 +12,8 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="main-header">
+  <!-- HEADER (Fijo) -->
+  <header class="main-header" id="main-header">
     <div class="header-top">
       <a href="#" class="logo-header">
         <img src="img/logo.png" alt="ZAPATA" class="logo-img">
@@ -48,7 +48,6 @@
     </div>
     
     <div class="hero-image">
-      <!-- Tu imagen modificada -->
       <img src="img/hero-modelo.png" alt="Modelo ZAPATA">
     </div>
 
@@ -90,9 +89,7 @@
       <a href="#" class="ver-todos" onclick="filtrarCategoria('todos')">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     
-    <div class="grid-productos" id="grid-productos">
-      <!-- Acá JS inyecta las tarjetas -->
-    </div>
+    <div class="grid-productos" id="grid-productos"></div>
   </section>
 
   <!-- BARRA CARRITO FLOTANTE -->
@@ -114,7 +111,6 @@
   <div id="modal-producto" class="modal">
     <div class="modal-contenido modal-producto-contenido">
       <button id="btn-cerrar-producto" class="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
-
       <div class="producto-detalle">
         <div class="galeria">
           <div class="galeria-principal">
@@ -124,22 +120,18 @@
           </div>
           <div class="galeria-miniaturas" id="galeria-miniaturas"></div>
         </div>
-
         <div class="producto-info">
           <h2 id="detalle-nombre"></h2>
           <p class="detalle-precio">$<span id="detalle-precio"></span></p>
           <p class="detalle-descripcion" id="detalle-descripcion"></p>
-
           <div class="selector-grupo">
             <label>Talles:</label>
             <div class="opciones-talles" id="opciones-talles"></div>
           </div>
-
           <div class="selector-grupo">
             <label>Colores:</label>
             <div class="opciones-colores" id="opciones-colores"></div>
           </div>
-
           <div class="selector-grupo">
             <label>Cantidad:</label>
             <div class="selector-cantidad">
@@ -148,7 +140,6 @@
               <button id="btn-sumar">+</button>
             </div>
           </div>
-
           <button id="btn-guia-talles" class="btn-guia">📏 Ver guía de talles</button>
           <button id="btn-agregar-detalle" class="btn-agregar-detalle">Agregar al carrito</button>
         </div>
@@ -173,9 +164,7 @@
         <h2>Tu Carrito</h2>
         <button id="btn-cerrar-modal" class="btn-cerrar"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      
       <ul id="lista-carrito"></ul>
-      
       <div class="envio-section">
         <h3>Datos de Envío</h3>
         <select id="zona-envio" onchange="actualizarCarrito()">
@@ -187,7 +176,6 @@
         </select>
         <input type="text" id="direccion-envio" placeholder="Ingresá tu dirección completa (Calle, N°, Localidad)" required>
       </div>
-
       <div class="modal-total">
         <div class="totales-desglose">
           <span>Subtotal: $<span id="subtotal-carrito">0</span></span>
@@ -198,7 +186,6 @@
           <span class="total-precio">$<span id="total">0</span></span>
         </div>
       </div>
-      
       <div class="modal-botones">
         <button id="btn-vaciar" class="btn-secundario">Vaciar</button>
         <button id="btn-pagar" class="btn-pagar">Pagar con MercadoPago</button>
@@ -210,10 +197,7 @@
   <footer id="contacto">
     <div class="footer-content">
       <div class="footer-col logo-col">
-        <div class="footer-z-custom">
-          Z
-          <span class="footer-z-line"></span>
-        </div>
+        <div class="footer-z-custom">Z<span class="footer-z-line"></span></div>
         <i class="fa-regular fa-heart footer-heart"></i>
       </div>
       <div class="footer-col">
