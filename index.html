@@ -84,7 +84,7 @@
     </div>
   </section>
 
-  <!-- NUEVA SECCIÓN: INFO DE ENTREGAS -->
+  <!-- SECCIÓN DE ENTREGAS (CON DISEÑO NEÓN) -->
   <section class="info-entregas">
     <h2 class="titulo-entregas">¿Cómo y cuándo recibís tu pedido?</h2>
     <div class="grid-entregas">
@@ -176,13 +176,12 @@
     <div class="modal-contenido modal-talles-contenido">
       <button id="btn-cerrar-talles" class="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
       <h2 class="titulo-talles">Guía de Talles</h2>
-      <!-- Esta imagen ahora cambia según el producto -->
       <img id="imagen-guia-talles" src="img/guia-talles.jpg" alt="Guía de talles ZAPATA" class="img-guia-talles">
       <p class="nota-talles">Si tenés dudas, escribinos por WhatsApp al 11 2861-9100 y te asesoramos 💗</p>
     </div>
   </div>
 
-  <!-- MODAL CARRITO CON NUEVOS DATOS DE ENTREGA -->
+  <!-- MODAL CARRITO -->
   <div id="modal-carrito" class="modal">
     <div class="modal-contenido">
       <div class="modal-header">
@@ -194,7 +193,6 @@
         <ul id="lista-carrito"></ul>
       </div>
       
-      <!-- SECCIÓN DE ENTREGA -->
       <div class="checkout-section">
         <h3>1. Método de Entrega</h3>
         
@@ -224,7 +222,6 @@
           </label>
         </div>
 
-        <!-- FORM DOMICILIO -->
         <div id="form-domicilio" class="form-entrega">
           <input type="text" id="dir-calle" placeholder="Dirección (Calle y número)" oninput="validarFormulario()">
           <input type="text" id="dir-entre-calles" placeholder="Entre calles" oninput="validarFormulario()">
@@ -271,7 +268,6 @@
           </div>
         </div>
 
-        <!-- INFO RETIRO -->
         <div id="form-retiro" class="form-entrega" style="display: none;">
           <div class="info-box">
             <p><strong>Retirar en el domicilio del vendedor</strong></p>
@@ -281,7 +277,6 @@
           </div>
         </div>
 
-        <!-- INFO ENCUENTRO -->
         <div id="form-encuentro" class="form-entrega" style="display: none;">
           <div class="info-box">
             <p><strong>Puntos de Encuentro (Exclusivo Zona Sur BsAs)</strong></p>
