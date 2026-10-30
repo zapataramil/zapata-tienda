@@ -130,17 +130,125 @@ button { font-family: inherit; cursor: pointer; }
 .ver-todos-btn { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--rosa); border: 2px solid var(--rosa); padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; }
 .ver-todos-btn:hover { background: var(--rosa); color: var(--blanco); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3); }
 
-/* ==================== SECCIÓN DE ENTREGAS ==================== */
-.info-entregas { max-width: 1300px; margin: 0 auto; padding: 4rem 2rem; background: var(--blanco); border-top: 1px solid #eee; }
-.titulo-entregas { text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 3rem; color: var(--negro); }
-.grid-entregas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.tarjeta-entrega { background: var(--fondo-tienda); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid rgba(255, 20, 147, 0.1); transition: 0.3s; }
-.tarjeta-entrega:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255, 20, 147, 0.1); border-color: var(--rosa); }
-.icono-entrega { width: 60px; height: 60px; background: var(--blanco); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--rosa); margin: 0 auto 1rem auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-.tarjeta-entrega h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-.subtitulo-entrega { color: var(--rosa); font-weight: 600; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-.tarjeta-entrega p { font-size: 0.9rem; color: var(--texto-gris); line-height: 1.5; }
-.tarjeta-entrega strong { color: var(--negro); }
+/* ==================== SECCIÓN DE ENTREGAS (MODO NEÓN) ==================== */
+.info-entregas { 
+  position: relative;
+  max-width: 100%; 
+  margin: 0 auto; 
+  padding: 5rem 2rem; 
+  background: var(--negro); 
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 20, 147, 0.2);
+}
+
+/* La Z de neón gigante de fondo */
+.info-entregas::before {
+  content: 'Z';
+  position: absolute;
+  top: -10rem;
+  right: -5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40rem;
+  font-weight: 800;
+  color: rgba(255, 20, 147, 0.03);
+  text-shadow: 0 0 80px rgba(255, 20, 147, 0.2), 0 0 150px rgba(255, 20, 147, 0.1);
+  z-index: 0;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.titulo-entregas { 
+  position: relative;
+  z-index: 1;
+  text-align: center; 
+  font-size: 1.8rem; 
+  font-weight: 300; 
+  letter-spacing: 2px;
+  margin-bottom: 3.5rem; 
+  color: var(--blanco); 
+  text-transform: uppercase;
+}
+
+.titulo-entregas span {
+  color: var(--rosa);
+  font-weight: 800;
+}
+
+.grid-entregas { 
+  position: relative;
+  z-index: 1;
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 2rem; 
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Tarjetas estilo Vidrio Esmerilado (Glassmorphism) */
+.tarjeta-entrega { 
+  background: rgba(255, 255, 255, 0.03); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2.5rem 2rem; 
+  border-radius: 16px; 
+  text-align: center; 
+  border: 1px solid rgba(255, 20, 147, 0.2); 
+  transition: all 0.4s ease; 
+}
+
+.tarjeta-entrega:hover { 
+  transform: translateY(-10px); 
+  border-color: var(--rosa);
+  box-shadow: 0 15px 35px rgba(255, 20, 147, 0.2); 
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.icono-entrega { 
+  width: 70px; 
+  height: 70px; 
+  background: rgba(255, 20, 147, 0.1); 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 1.8rem; 
+  color: var(--rosa); 
+  margin: 0 auto 1.5rem auto; 
+  box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+  transition: 0.3s;
+}
+
+.tarjeta-entrega:hover .icono-entrega {
+  background: var(--rosa);
+  color: var(--blanco);
+  transform: scale(1.1);
+}
+
+.tarjeta-entrega h3 { 
+  font-size: 1.2rem; 
+  font-weight: 700; 
+  margin-bottom: 0.5rem; 
+  color: var(--blanco);
+}
+
+.subtitulo-entrega { 
+  color: var(--rosa); 
+  font-weight: 600; 
+  font-size: 0.85rem; 
+  margin-bottom: 1rem; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+}
+
+.tarjeta-entrega p { 
+  font-size: 0.9rem; 
+  color: #bbb; 
+  line-height: 1.6; 
+}
+
+.tarjeta-entrega strong { 
+  color: var(--blanco); 
+}
 
 /* ==================== BARRA CARRITO FLOTANTE ==================== */
 .sticky-cart { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 150%); width: 90%; max-width: 1000px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 20, 147, 0.4); padding: 1rem 1.5rem; border-radius: 50px; box-shadow: 0 10px 30px rgba(255, 20, 147, 0.15); z-index: 99; transition: transform 0.4s ease, opacity 0.3s ease; opacity: 0; }
@@ -317,7 +425,7 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
   .hero-image { justify-content: center; margin-bottom: 2rem;}
   .hero-image img { max-height: 300px; }
   .header-top { padding: 1rem 2rem; }
-  .grid-entregas { grid-template-columns: repeat(2, 1fr); } /* De 3 a 2 columnas en tablet */
+  .grid-entregas { grid-template-columns: repeat(2, 1fr); } 
 }
 
 @media (max-width: 768px) {
@@ -344,6 +452,12 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
   .footer-contacto { flex-direction: column; align-items: center; }
   .logo-col { align-items: center; }
   .footer-z-custom { font-size: 4.5rem; }
+
+  /* Ajustamos la sección de entregas para celular */
+  .info-entregas { padding: 4rem 1rem; }
+  .titulo-entregas { font-size: 1.4rem; }
+  .grid-entregas { grid-template-columns: 1fr; }
+  .info-entregas::before { font-size: 25rem; top: auto; bottom: -5rem; right: -5rem; }
   
   .producto-detalle { grid-template-columns: 1fr; }
   .galeria { border-radius: 16px 16px 0 0; padding: 1rem; }
@@ -354,9 +468,6 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
   
   .modal-contenido { padding: 1.5rem; max-width: 95%; }
   .modal-botones { flex-direction: column-reverse; }
-
-  /* Info entregas en celular: 1 columna */
-  .grid-entregas { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
