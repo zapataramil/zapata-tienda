@@ -10,16 +10,15 @@ const productos = [
     precio: 30000,
     badge: 'NUEVO',
     categoria: 'ropa',
-    imagenes: ['img/productos/campera-engomada-1.jpeg',
-      'img/productos/campera-engomada-2.jpeg',
-      'img/productos/campera-engomada-3.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800'],
     descripcion: 'Campera engomada de excelente calidad. Ideal para días de lluvia o looks urbanos.',
     talles: ['2', '3', '4'],
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Visón', hex: '#8B7355' },
       { nombre: 'Crema', hex: '#F5F5DC' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg' // Podés cambiar esta ruta por una específica para este producto
   },
   {
     id: 2,
@@ -27,16 +26,15 @@ const productos = [
     precio: 22000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['img/productos/campera-top-engomada-1.jpeg',
-      'img/productos/campera-top-engomada-2.jpeg',
-      'img/productos/campera-top-engomada-3.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800'],
     descripcion: 'Campera top engomada, tiro corto. Súper versátil.',
     talles: ['2', '4'],
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Visón', hex: '#8B7355' },
       { nombre: 'Crema', hex: '#F5F5DC' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   },
   {
     id: 3,
@@ -44,14 +42,14 @@ const productos = [
     precio: 10000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['img/productos/remera-microtull-con-encaje-1.jpeg',
-      'img/productos/remera-microtull-con-encaje-2.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800'],
     descripcion: 'Remera de microtull con detalles de encaje. Muy delicada y femenina.',
-    talles: ['S-M'], // Talle único que cubre S y M
+    talles: ['S-M'], 
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   },
   {
     id: 4,
@@ -59,25 +57,17 @@ const productos = [
     precio: 11000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['img/productos/remera-boxy-fit-1.jpeg',
-      'img/productos/remera-boxy-fit-2.jpeg',
-      'img/productos/remera-boxy-fit-3.jpeg',
-              'img/productos/remera-boxy-fit-4.jpeg',
-      'img/productos/remera-boxy-fit-5.jpeg',
-      'img/productos/remera-boxy-fit-6.jpeg',
-              'img/productos/remera-boxy-fit-7.jpeg',
-      'img/productos/remera-boxy-fit-8.jpeg',
-      'img/productos/remera-boxy-fit-9.jpeg',
-              'img/productos/remera-boxy-fit-10.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800'],
     descripcion: 'Remera de corte holgado (boxy fit). Súper cómoda para el día a día.',
-    talles: ['M-XL'], // Talle único que cubre M a XL
+    talles: ['M-XL'], 
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Celeste', hex: '#87CEEB' },
       { nombre: 'Blanco', hex: '#FFFFFF' },
       { nombre: 'Beige', hex: '#F5F5DC' },
       { nombre: 'Durazno', hex: '#FFDAB9' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   },
   {
     id: 5,
@@ -85,14 +75,14 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes:  ['img/productos/remera-oversize-1.jpeg',
-      'img/productos/remera-oversize-2.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800'],
     descripcion: 'Remera oversize, caída perfecta. Un básico que no puede faltar.',
     talles: ['M-XL'], 
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Beige', hex: '#F5F5DC' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   },
   {
     id: 6,
@@ -100,16 +90,14 @@ const productos = [
     precio: 11000,
     badge: null,
     categoria: 'ropa',
-    imagenes:  ['img/productos/remera-basica-1.jpeg',
-      'img/productos/remera-basica-2.jpeg',
-               'img/productos/remera-basica-3.jpeg',
-      'img/productos/remera-basica-4.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800'],
     descripcion: 'Remera básica de algodón. Calidad premium.',
     talles: ['S-L'], 
     colores: [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   },
   {
     id: 7,
@@ -117,11 +105,7 @@ const productos = [
     precio: 24000,
     badge: 'NUEVO',
     categoria: 'ropa',
-    imagenes: ['img/productos/vestido-aura-1.jpeg',
-      'img/productos/vestido-aura-2.jpeg',
-      'img/productos/vestido-aura-3.jpeg',
-      'img/productos/vestido-aura-4.jpeg'],
-               
+    imagenes: ['https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800'],
     descripcion: 'Vestido Aura, diseño exclusivo de ZAPATA. Elegante y con una caída increíble.',
     talles: ['S-M'], 
     colores: [
@@ -129,7 +113,8 @@ const productos = [
       { nombre: 'Bordo', hex: '#800000' },
       { nombre: 'Chocolate', hex: '#7B3F00' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   },
   {
     id: 8,
@@ -137,12 +122,13 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['img/productos/body-microtull-con-encaje-1.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1564257577352-c2e2c4c1e7d0?w=800'],
     descripcion: 'Body de microtull con encaje. Ideal para looks nocturnos.',
     talles: ['S-M'],
     colores: [
       { nombre: 'Negro', hex: '#000000' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   },
   {
     id: 9,
@@ -150,13 +136,13 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['img/productos/body-luna-1.jpeg',
-      'img/productos/body-luna-2.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1515347619152-6467b52c4849?w=800'],
     descripcion: 'Body Luna, tela elastizada que se adapta perfecto al cuerpo.',
     talles: ['S-M'],
     colores: [
       { nombre: 'Negro', hex: '#000000' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   },
   {
     id: 10,
@@ -164,14 +150,13 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['img/productos/body-cierre-1.jpeg',
-              'img/productos/body-cierre-2.jpeg',
-              'img/productos/body-cierre-3.jpeg'],
+    imagenes: ['https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=800'],
     descripcion: 'Body con cierre delantero. Detalle súper moderno.',
     talles: ['S-M'],
     colores: [
       { nombre: 'Negro', hex: '#000000' }
-    ]
+    ],
+    guiaTalles: 'img/guia-talles.jpg'
   }
 ];
 
@@ -258,7 +243,6 @@ function filtrarCategoria(cat) {
 function renderizarProductos(lista = productos) {
   const grid = document.getElementById('grid-productos');
   grid.innerHTML = lista.map(p => {
-    // Si solo hay un talle (como "S-M"), lo seleccionamos automáticamente
     if (p.talles.length === 1) tallesCardSeleccionados[p.id] = p.talles[0];
     if (p.colores.length === 1) coloresCardSeleccionados[p.id] = p.colores[0].nombre;
 
@@ -341,6 +325,9 @@ function abrirDetalle(id) {
   document.getElementById('detalle-nombre').textContent = productoActual.nombre;
   document.getElementById('detalle-precio').textContent = productoActual.precio.toLocaleString('es-AR');
   document.getElementById('detalle-descripcion').textContent = productoActual.descripcion;
+  
+  // ACTUALIZAR LA GUÍA DE TALLES DEL PRODUCTO
+  document.getElementById('imagen-guia-talles').src = productoActual.guiaTalles;
 
   actualizarGaleria();
 
@@ -458,6 +445,15 @@ function actualizarCarrito() {
       costoEnvio = provinciaSeleccionada === 'CABA' ? 9000 : 8000;
       mensajeRapido.style.display = 'block';
       mensajeNormal.style.display = 'none';
+      
+      // LÓGICA DE "LLEGA HOY" vs "LLEGA MAÑANA" (Basado en la hora actual)
+      const horaActual = new Date().getHours();
+      if (horaActual < 12) {
+        mensajeRapido.innerHTML = '<i class="fa-solid fa-truck-fast"></i> ¡LLEGA HOY! (Comprando antes de las 12hs)';
+      } else {
+        mensajeRapido.innerHTML = '<i class="fa-solid fa-truck-fast"></i> LLEGA MAÑANA';
+      }
+      
     } else if (provinciaSeleccionada === 'Buenos Aires') {
       costoEnvio = 19900;
       mensajeRapido.style.display = 'none';
