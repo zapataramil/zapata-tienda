@@ -84,6 +84,38 @@
     </div>
   </section>
 
+  <!-- NUEVA SECCIÓN: INFO DE ENTREGAS -->
+  <section class="info-entregas">
+    <h2 class="titulo-entregas">¿Cómo y cuándo recibís tu pedido?</h2>
+    <div class="grid-entregas">
+      
+      <!-- Tarjeta 1: Retiro -->
+      <div class="tarjeta-entrega">
+        <div class="icono-entrega"><i class="fa-solid fa-store"></i></div>
+        <h3>Retiro en Tienda</h3>
+        <p class="subtitulo-entrega">Wilde, Avellaneda</p>
+        <p>Podés retirarlo apenas realizás la compra. De <strong>Lunes a Sábados de 8 a 19hs.</strong></p>
+      </div>
+
+      <!-- Tarjeta 2: Puntos de Encuentro -->
+      <div class="tarjeta-entrega">
+        <div class="icono-entrega"><i class="fa-solid fa-train-subway"></i></div>
+        <h3>Punto de Encuentro</h3>
+        <p class="subtitulo-entrega">Entrega en 3 horas</p>
+        <p>Una vez comprado, coordinamos. Estaciones: <strong>Avellaneda, Sarandí, Domínico, Wilde, Bernal, Don Bosco, Quilmes, Berazategui, Lanús, Gerli, Lomas de Zamora, Banfield, Temperley, Adrogué, Constitución.</strong> También en Mitre y Las Flores (Wilde) y Camino Gral Belgrano y Fabián Onsari.</p>
+      </div>
+
+      <!-- Tarjeta 3: Envío a Domicilio -->
+      <div class="tarjeta-entrega">
+        <div class="icono-entrega"><i class="fa-solid fa-truck-fast"></i></div>
+        <h3>Envío a Domicilio</h3>
+        <p class="subtitulo-entrega">CABA y Zona Sur</p>
+        <p>Si comprás <strong>antes de las 12hs</strong>, ¡llega el mismo día! Si comprás después del mediodía, llega al día siguiente. Al resto del país, de 2 a 6 días hábiles.</p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- BARRA CARRITO FLOTANTE -->
   <div id="sticky-cart" class="sticky-cart">
     <div class="sticky-cart-content">
@@ -144,7 +176,8 @@
     <div class="modal-contenido modal-talles-contenido">
       <button id="btn-cerrar-talles" class="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
       <h2 class="titulo-talles">Guía de Talles</h2>
-      <img src="img/guia-talles.jpg" alt="Guía de talles ZAPATA" class="img-guia-talles">
+      <!-- Esta imagen ahora cambia según el producto -->
+      <img id="imagen-guia-talles" src="img/guia-talles.jpg" alt="Guía de talles ZAPATA" class="img-guia-talles">
       <p class="nota-talles">Si tenés dudas, escribinos por WhatsApp al 11 2861-9100 y te asesoramos 💗</p>
     </div>
   </div>
@@ -170,7 +203,7 @@
             <input type="radio" name="metodo-entrega" value="domicilio" checked onchange="cambiarMetodoEntrega()">
             <div class="radio-texto">
               <span class="radio-title">Envío a Domicilio</span>
-              <span class="radio-subtitle">CABA o BsAs Zona Sur: Llega mañana</span>
+              <span class="radio-subtitle">CABA o Zona Sur: Llega hoy (antes de las 12hs)</span>
             </div>
           </label>
           
@@ -252,10 +285,10 @@
         <div id="form-encuentro" class="form-entrega" style="display: none;">
           <div class="info-box">
             <p><strong>Puntos de Encuentro (Exclusivo Zona Sur BsAs)</strong></p>
-            <p>Avellaneda, Lanús, Quilmes, Berazategui, Lomas de Zamora, Almirante Brown.</p>
-            <p style="margin-top: 5px; font-size: 0.85rem; color: #666;">Entrega en estaciones de tren, o lugares a coordinar.</p>
+            <p>Avellaneda, Sarandí, Domínico, Wilde, Bernal, Don Bosco, Quilmes, Berazategui, Lanús, Gerli, Lomas de Zamora, Banfield, Temperley, Adrogué, Constitución.</p>
+            <p>Mitre y Las Flores (Wilde), Camino Gral Belgrano y Fabián Onsari.</p>
             <p class="precio-encuentro">Costo: $3.000</p>
-            <p class="text-info-horario"><i class="fa-regular fa-clock"></i> Entrega todos los días de semana!</p>
+            <p class="text-info-horario"><i class="fa-regular fa-clock"></i> Entrega en 3 horas (Días de semana)</p>
           </div>
         </div>
 
