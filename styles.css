@@ -130,36 +130,42 @@ button { font-family: inherit; cursor: pointer; }
 .ver-todos-btn { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--rosa); border: 2px solid var(--rosa); padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; }
 .ver-todos-btn:hover { background: var(--rosa); color: var(--blanco); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3); }
 
-/* ==================== SECCIÓN DE ENTREGAS (MODO NEÓN) ==================== */
+/* ==================== SECCIÓN DE ENTREGAS CON VIDEO ==================== */
 .info-entregas { 
   position: relative;
   max-width: 100%; 
   margin: 0 auto; 
-  padding: 5rem 2rem; 
+  padding: 6rem 2rem; 
   background: var(--negro); 
   overflow: hidden;
-  border-top: 1px solid rgba(255, 20, 147, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* La Z de neón gigante de fondo */
-.info-entregas::before {
-  content: 'Z';
+/* El video de fondo */
+.entregas-video {
   position: absolute;
-  top: -10rem;
-  right: -5rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 40rem;
-  font-weight: 800;
-  color: rgba(255, 20, 147, 0.03);
-  text-shadow: 0 0 80px rgba(255, 20, 147, 0.2), 0 0 150px rgba(255, 20, 147, 0.1);
-  z-index: 0;
-  pointer-events: none;
-  line-height: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.35; 
+}
+
+/* Capa oscura para que los textos resalten */
+.entregas-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,13,13,0.8) 0%, rgba(13,13,13,0.95) 100%);
+  z-index: 2;
 }
 
 .titulo-entregas { 
   position: relative;
-  z-index: 1;
+  z-index: 3;
   text-align: center; 
   font-size: 1.8rem; 
   font-weight: 300; 
@@ -176,19 +182,20 @@ button { font-family: inherit; cursor: pointer; }
 
 .grid-entregas { 
   position: relative;
-  z-index: 1;
+  z-index: 3;
   display: grid; 
   grid-template-columns: repeat(3, 1fr); 
   gap: 2rem; 
   max-width: 1300px;
+  width: 100%;
   margin: 0 auto;
 }
 
 /* Tarjetas estilo Vidrio Esmerilado (Glassmorphism) */
 .tarjeta-entrega { 
-  background: rgba(255, 255, 255, 0.03); 
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 2.5rem 2rem; 
   border-radius: 16px; 
   text-align: center; 
@@ -199,8 +206,8 @@ button { font-family: inherit; cursor: pointer; }
 .tarjeta-entrega:hover { 
   transform: translateY(-10px); 
   border-color: var(--rosa);
-  box-shadow: 0 15px 35px rgba(255, 20, 147, 0.2); 
-  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px rgba(255, 20, 147, 0.25); 
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .icono-entrega { 
@@ -242,7 +249,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .tarjeta-entrega p { 
   font-size: 0.9rem; 
-  color: #bbb; 
+  color: #ddd; 
   line-height: 1.6; 
 }
 
@@ -457,7 +464,6 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
   .info-entregas { padding: 4rem 1rem; }
   .titulo-entregas { font-size: 1.4rem; }
   .grid-entregas { grid-template-columns: 1fr; }
-  .info-entregas::before { font-size: 25rem; top: auto; bottom: -5rem; right: -5rem; }
   
   .producto-detalle { grid-template-columns: 1fr; }
   .galeria { border-radius: 16px 16px 0 0; padding: 1rem; }
