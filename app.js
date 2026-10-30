@@ -22,7 +22,7 @@ const productos = [
       { nombre: 'Visón', hex: '#8B7355' },
       { nombre: 'Crema', hex: '#F5F5DC' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-campera-engomada.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-campera-engomada.png'
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const productos = [
       { nombre: 'Visón', hex: '#8B7355' },
       { nombre: 'Crema', hex: '#F5F5DC' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-campera-top-engomada.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-campera-top-engomada.png'
   },
   {
     id: 3,
@@ -60,7 +60,7 @@ const productos = [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-remera-microtull-con-encaje.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-remera-microtull-con-encaje.png'
   },
   {
     id: 4,
@@ -89,7 +89,7 @@ const productos = [
       { nombre: 'Beige', hex: '#F5F5DC' },
       { nombre: 'Durazno', hex: '#FFDAB9' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-remera-boxy-fit.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-remera-boxy-fit.png'
   },
   {
     id: 5,
@@ -107,7 +107,7 @@ const productos = [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Beige', hex: '#F5F5DC' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-remera-oversize.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-remera-oversize.png'
   },
   {
     id: 6,
@@ -127,7 +127,7 @@ const productos = [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-remera-basica.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-remera-basica.png'
   },
   {
     id: 7,
@@ -149,7 +149,7 @@ const productos = [
       { nombre: 'Chocolate', hex: '#7B3F00' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-vestido-aura.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-vestido-aura.png'
   },
   {
     id: 8,
@@ -165,7 +165,7 @@ const productos = [
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-body-microtull-con-encaje.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-body-microtull-con-encaje.png'
   },
   {
     id: 9,
@@ -182,7 +182,7 @@ const productos = [
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-body-luna.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-body-luna.png'
   },
   {
     id: 10,
@@ -200,7 +200,7 @@ const productos = [
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-body-cierre.jpeg'
+    guiaTalles: 'img/guia-de-talles/gt-body-cierre.png'
   }
 ];
 
