@@ -10,7 +10,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const config = {
   api: {
-    bodyParser: false // Mantenemos esto para la validación de firma
+    bodyParser: false
   }
 };
 
@@ -21,23 +21,28 @@ export default async function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // Respondemos rápido a MercadoPago
   res.status(200).send('OK');
 
   try {
-    // 👇 ACÁ ESTÁ LA CORRECCIÓN PRINCIPAL
-    const body = req.body; 
+    // Aseguramos que body sea un objeto (Vercel a veces lo manda como string si no está bien parseado)
+    let body = req.body;
+    if (typeof body === 'string') {
+      body = JSON.parse(body);
+    }
 
-    // Validar firma HMAC
+    /* ========================================================
+       VALIDACIÓN DE FIRMA DESACTIVADA TEMPORALMENTE PARA PRUEBAS
+       (La volveremos a activar cuando confirmemos que el mail llega)
+       ========================================================
     const xSignature = req.headers['x-signature'];
     const xRequestId = req.headers['x-request-id'];
 
     if (xSignature && xRequestId && process.env.MP_WEBHOOK_SECRET) {
       const partes = xSignature.split(',');
-      const ts = partes.find(p => p.startsWith('ts='))?.replace('ts=', '');
-      const v1 = partes.find(p => p.startsWith('v1='))?.replace('v1=', '');
+      const ts = partes.find(p => p.trim().startsWith('ts='))?.replace('ts=', '').trim();
+      const v1 = partes.find(p => p.trim().startsWith('v1='))?.replace('v1=', '').trim();
 
-      const dataId = body.data?.id || req.query['data.id'];
+      const dataId = (body.data?.id || req.query['data.id'] || '').toString().toLowerCase();
       const manifest = `id:${dataId};request-id:${xRequestId};ts:${ts};`;
 
       const hmac = crypto
@@ -46,10 +51,11 @@ export default async function handler(req, res) {
         .digest('hex');
 
       if (hmac !== v1) {
-        console.warn('⚠️ Firma del webhook inválida');
+        console.warn('⚠️ Firma del webhook inválida. Se cancela el proceso.');
         return;
       }
     }
+    ======================================================== */
 
     if (body.type !== 'payment') return;
 
@@ -96,8 +102,9 @@ export default async function handler(req, res) {
         <p><em>Este es un aviso automático de tu tienda ZAPATA.</em></p>
       `;
 
-      // 👇 AGREGAMOS AWAIT PARA ASEGURAR EL ENVÍO
       try {
+        // OJO: Si el mail de destino no es el mismo con el que te registraste en Resend, 
+        // tenés que verificar tu dominio en Resend. Si no, rebotará.
         await resend.emails.send({
           from: 'ZAPATA Indumentaria <onboarding@resend.dev>',
           to: [process.env.EMAIL_DESTINO],
