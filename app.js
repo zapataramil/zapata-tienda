@@ -44,7 +44,8 @@ const productos = [
     precio: 10000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800'],
+    imagenes: ['img/productos/remera-microtull-con-encaje-1.jpeg',
+      'img/productos/remera-microtull-con-encaje-2.jpeg'],
     descripcion: 'Remera de microtull con detalles de encaje. Muy delicada y femenina.',
     talles: ['S-M'], // Talle único que cubre S y M
     colores: [
@@ -136,7 +137,7 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['https://images.unsplash.com/photo-1564257577352-c2e2c4c1e7d0?w=800'],
+    imagenes: ['img/productos/body-microtull-con-encaje-1.jpeg'],
     descripcion: 'Body de microtull con encaje. Ideal para looks nocturnos.',
     talles: ['S-M'],
     colores: [
@@ -149,7 +150,8 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['https://images.unsplash.com/photo-1515347619152-6467b52c4849?w=800'],
+    imagenes: ['img/productos/body-luna-1.jpeg',
+      'img/productos/body-luna-2.jpeg'],
     descripcion: 'Body Luna, tela elastizada que se adapta perfecto al cuerpo.',
     talles: ['S-M'],
     colores: [
@@ -162,7 +164,9 @@ const productos = [
     precio: 13000,
     badge: null,
     categoria: 'ropa',
-    imagenes: ['https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=800'],
+    imagenes: ['img/productos/body-cierre-1.jpeg',
+              'img/productos/body-cierre-2.jpeg',
+              'img/productos/body-cierre-3.jpeg'],
     descripcion: 'Body con cierre delantero. Detalle súper moderno.',
     talles: ['S-M'],
     colores: [
