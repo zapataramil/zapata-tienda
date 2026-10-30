@@ -48,28 +48,33 @@ button { font-family: inherit; cursor: pointer; }
 .cart-icon-btn { background: transparent; border: none; color: var(--blanco); position: relative; }
 #contador { position: absolute; top: -8px; right: -10px; background: var(--blanco); color: var(--rosa); font-size: 0.75rem; font-weight: 800; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-/* ==================== HERO CON VIDEO DE FONDO ==================== */
-.hero { display: flex; justify-content: space-between; align-items: center; padding: 10rem 4rem 0 4rem; max-width: 1500px; margin: 0 auto; min-height: 650px; position: relative; overflow: hidden; background: var(--negro); }
-
-.hero-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  opacity: 0.5; 
+/* ==================== HERO CON IMAGEN DE FONDO ==================== */
+.hero { 
+  display: flex; 
+  align-items: center; 
+  padding: 10rem 4rem 0 4rem; 
+  max-width: 1500px; 
+  margin: 0 auto; 
+  min-height: 650px; 
+  position: relative; 
+  overflow: hidden; 
+  background-color: var(--negro);
+  /* ACÁ ESTÁ LA MAGIA: La imagen de la chica de fondo */
+  background-image: url('img/hero-modelo.png'); 
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
 }
 
 .hero-overlay { 
   position: absolute; 
   inset: 0; 
-  background: linear-gradient(90deg, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.6) 50%, rgba(13,13,13,0.1) 100%); 
+  /* Degradado más oscuro a la izquierda para que se lea el texto, y más transparente a la derecha */
+  background: linear-gradient(90deg, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.7) 50%, rgba(13,13,13,0.2) 100%); 
   z-index: 2; 
 }
 
-.hero-content { flex: 1; color: var(--blanco); z-index: 3; padding-bottom: 4rem; }
+.hero-content { flex: 1; color: var(--blanco); z-index: 3; padding-bottom: 4rem; max-width: 600px; }
 .hero-subtitle { font-size: 0.8rem; letter-spacing: 0.3em; color: var(--blanco); display: block; margin-bottom: 1rem; }
 .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
 .text-pink { color: var(--rosa); }
@@ -77,19 +82,9 @@ button { font-family: inherit; cursor: pointer; }
 .btn-principal { background: var(--rosa); color: var(--blanco); padding: 1rem 2rem; border-radius: 30px; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; z-index: 4; position: relative; box-shadow: 0 10px 20px rgba(255, 20, 147, 0.3); }
 .btn-principal:hover { background: var(--rosa-hover); transform: translateY(-2px); box-shadow: 0 15px 25px rgba(255, 20, 147, 0.4); }
 
-.hero-image { flex: 1; display: flex; justify-content: flex-end; position: relative; z-index: 3; }
-
-.hero-image img { 
-  max-height: 500px; 
-  object-fit: cover; 
-  border-radius: 30px; 
-  border: 3px solid rgba(255, 20, 147, 0.8); 
-  box-shadow: 0 0 30px rgba(255, 20, 147, 0.5), 0 10px 30px rgba(0,0,0,0.6); 
-}
-
 /* ==================== CATEGORIAS (Ocultas por falta de stock) ==================== */
 .categorias { 
-  display: none; /* Cambiá 'none' por 'flex' cuando quieras volver a mostrarla */
+  display: none; 
   justify-content: center; 
   align-items: flex-start; 
   gap: 4rem; 
@@ -106,7 +101,6 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ==================== PRODUCTOS ==================== */
 .productos-section { max-width: 1300px; margin: 0 auto; padding: 4rem 2rem; background: var(--fondo-tienda); }
-
 .grid-productos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
 
 .card-producto { background: var(--blanco); border-radius: 8px; overflow: hidden; position: relative; transition: 0.3s; border: 1px solid transparent; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
@@ -152,7 +146,6 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
 }
 
-/* La foto de fondo (asegurate que el nombre del archivo coincida) */
 .entregas-bg {
   position: absolute;
   top: 0;
@@ -164,7 +157,6 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 0.8; 
 }
 
-/* Capa oscura para que los textos resalten */
 .entregas-overlay {
   position: absolute;
   inset: 0;
@@ -185,87 +177,19 @@ button { font-family: inherit; cursor: pointer; }
   text-shadow: 0 2px 10px rgba(0,0,0,0.9);
 }
 
-.titulo-entregas span {
-  color: var(--rosa);
-  font-weight: 800;
-}
+.titulo-entregas span { color: var(--rosa); font-weight: 800; }
+.grid-entregas { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1300px; width: 100%; margin: 0 auto; }
 
-.grid-entregas { 
-  position: relative;
-  z-index: 3;
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 2rem; 
-  max-width: 1300px;
-  width: 100%;
-  margin: 0 auto;
-}
+.tarjeta-entrega { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 2.5rem 2rem; border-radius: 16px; text-align: center; border: 1px solid rgba(255, 20, 147, 0.2); transition: all 0.4s ease; }
+.tarjeta-entrega:hover { transform: translateY(-10px); border-color: var(--rosa); box-shadow: 0 15px 35px rgba(255, 20, 147, 0.25); background: rgba(255, 255, 255, 0.08); }
 
-/* Tarjetas estilo Vidrio Esmerilado (Glassmorphism) */
-.tarjeta-entrega { 
-  background: rgba(255, 255, 255, 0.05); 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 2.5rem 2rem; 
-  border-radius: 16px; 
-  text-align: center; 
-  border: 1px solid rgba(255, 20, 147, 0.2); 
-  transition: all 0.4s ease; 
-}
+.icono-entrega { width: 70px; height: 70px; background: rgba(255, 20, 147, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--rosa); margin: 0 auto 1.5rem auto; box-shadow: 0 0 20px rgba(255, 20, 147, 0.3); transition: 0.3s; }
+.tarjeta-entrega:hover .icono-entrega { background: var(--rosa); color: var(--blanco); transform: scale(1.1); }
 
-.tarjeta-entrega:hover { 
-  transform: translateY(-10px); 
-  border-color: var(--rosa);
-  box-shadow: 0 15px 35px rgba(255, 20, 147, 0.25); 
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.icono-entrega { 
-  width: 70px; 
-  height: 70px; 
-  background: rgba(255, 20, 147, 0.1); 
-  border-radius: 50%; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  font-size: 1.8rem; 
-  color: var(--rosa); 
-  margin: 0 auto 1.5rem auto; 
-  box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
-  transition: 0.3s;
-}
-
-.tarjeta-entrega:hover .icono-entrega {
-  background: var(--rosa);
-  color: var(--blanco);
-  transform: scale(1.1);
-}
-
-.tarjeta-entrega h3 { 
-  font-size: 1.2rem; 
-  font-weight: 700; 
-  margin-bottom: 0.5rem; 
-  color: var(--blanco);
-}
-
-.subtitulo-entrega { 
-  color: var(--rosa); 
-  font-weight: 600; 
-  font-size: 0.85rem; 
-  margin-bottom: 1rem; 
-  text-transform: uppercase; 
-  letter-spacing: 1px; 
-}
-
-.tarjeta-entrega p { 
-  font-size: 0.9rem; 
-  color: #ddd; 
-  line-height: 1.6; 
-}
-
-.tarjeta-entrega strong { 
-  color: var(--blanco); 
-}
+.tarjeta-entrega h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--blanco); }
+.subtitulo-entrega { color: var(--rosa); font-weight: 600; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+.tarjeta-entrega p { font-size: 0.9rem; color: #ddd; line-height: 1.6; }
+.tarjeta-entrega strong { color: var(--blanco); }
 
 /* ==================== BARRA CARRITO FLOTANTE ==================== */
 .sticky-cart { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 150%); width: 90%; max-width: 1000px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 20, 147, 0.4); padding: 1rem 1.5rem; border-radius: 50px; box-shadow: 0 10px 30px rgba(255, 20, 147, 0.15); z-index: 99; transition: transform 0.4s ease, opacity 0.3s ease; opacity: 0; }
@@ -277,7 +201,7 @@ button { font-family: inherit; cursor: pointer; }
 .btn-finalizar { background: var(--rosa); color: var(--blanco); border: none; padding: 0.8rem 1.5rem; border-radius: 30px; font-weight: 600; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
 .btn-finalizar:hover { background: var(--rosa-hover); }
 
-/* ==================== FOOTER CON Z DE NEÓN ==================== */
+/* ==================== FOOTER ==================== */
 footer { background: var(--negro); color: var(--blanco); padding: 3rem 4rem 1rem 4rem; margin-top: 0; position: relative; overflow: hidden; }
 footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; font-family: 'Montserrat', sans-serif; font-size: 40rem; font-weight: 800; color: rgba(255, 20, 147, 0.08); text-shadow: 0 0 60px rgba(255, 20, 147, 0.4), 0 0 120px rgba(255, 20, 147, 0.2); z-index: 0; pointer-events: none; line-height: 1; }
 .footer-content { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 2rem; }
@@ -300,7 +224,7 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
 .btn-cerrar-modal { position: absolute; top: 1rem; right: 1rem; background: var(--blanco); border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 1.2rem; color: var(--negro); z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; }
 .btn-cerrar-modal:hover { background: var(--rosa); color: var(--blanco); }
 
-/* ==================== DETALLE PRODUCTO Y GALERÍA (CORREGIDO) ==================== */
+/* ==================== DETALLE PRODUCTO Y GALERÍA ==================== */
 .producto-detalle { display: grid; grid-template-columns: 1fr 1fr; }
 .galeria { background: var(--gris-claro); padding: 1.5rem; border-radius: 16px 0 0 16px; width: 100%; overflow: hidden; }
 .galeria-principal { position: relative; border-radius: 12px; overflow: hidden; margin-bottom: 1rem; }
@@ -395,13 +319,19 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 1024px) {
   .grid-productos { grid-template-columns: repeat(3, 1fr); }
-  .hero { flex-direction: column; padding: 9rem 2rem 2rem 2rem; text-align: center; min-height: auto; }
-  .hero-video { opacity: 0.3; }
-  .hero-overlay { background: linear-gradient(180deg, rgba(13,13,13,0.7) 0%, rgba(13,13,13,0.9) 100%); }
-  .hero-content { padding-bottom: 2rem; }
+  
+  /* En tablet/celular la imagen de fondo se centra y el overlay es más parejo */
+  .hero { 
+    flex-direction: column; 
+    padding: 9rem 2rem 2rem 2rem; 
+    text-align: center; 
+    min-height: auto; 
+    background-position: center;
+  }
+  .hero-overlay { background: rgba(13,13,13,0.75); }
+  .hero-content { padding-bottom: 2rem; max-width: 100%; }
   .hero-desc { margin: 0 auto 2rem auto; }
-  .hero-image { justify-content: center; margin-bottom: 2rem;}
-  .hero-image img { max-height: 300px; }
+  
   .header-top { padding: 1rem 2rem; }
   .grid-entregas { grid-template-columns: repeat(2, 1fr); } 
 }
@@ -416,7 +346,6 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
   .hero { padding: 8rem 1rem 2rem 1rem; }
   .hero-title { font-size: 2.2rem; margin-bottom: 1rem; }
   .hero-desc { font-size: 0.9rem; margin-bottom: 1.5rem; }
-  .hero-image img { max-height: 250px; border-radius: 20px; border: 2px solid rgba(255, 20, 147, 0.8); box-shadow: 0 0 15px rgba(255, 20, 147, 0.4), 0 5px 15px rgba(0,0,0,0.5); }
 
   .categorias { gap: 1rem; padding: 2rem 1rem; justify-content: space-evenly; }
   .categoria-item { width: 65px; }
@@ -451,7 +380,6 @@ footer::before { content: 'Z'; position: absolute; bottom: -8rem; right: -2rem; 
   .card-img-wrap { height: 200px; }
   .info-producto h3 { font-size: 0.85rem; }
   .precio { font-size: 1rem; }
-  .hero-image img { max-height: 200px; } 
 }
 
 /* ==================== ANIMACIÓN DE FLORES ==================== */
