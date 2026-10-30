@@ -82,10 +82,10 @@ export default async function handler(req, res) {
 
       try {
         await resend.emails.send({
-          from: 'ZAPATA Indumentaria <onboarding@resend.dev>',
-          to: [process.env.EMAIL_DESTINO],
-          subject: `🛍️ Nueva venta - Pedido ${orderId}`,
-          html: htmlEmail,
+  from: 'ZAPATA Indumentaria <pedidos@zapata.website>', // 👈 Tu nuevo remitente
+  to: [process.env.EMAIL_DESTINO],
+  subject: `🛍️ Nueva venta - Pedido ${orderId}`,
+  html: htmlEmail,
         });
         console.log('📧 Correo de venta enviado con éxito');
       } catch (emailError) {
