@@ -7,7 +7,7 @@ const productos = [
   {
     id: 1,
     nombre: 'Campera Engomada',
-    precio: 100,
+    precio: 30000,
     badge: 'NUEVO',
     categoria: 'ropa',
     imagenes: [
@@ -22,7 +22,7 @@ const productos = [
       { nombre: 'Visón', hex: '#8B7355' },
       { nombre: 'Crema', hex: '#F5F5DC' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-campera-engomada.jpeg'
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const productos = [
       { nombre: 'Visón', hex: '#8B7355' },
       { nombre: 'Crema', hex: '#F5F5DC' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-campera-top-engomada.jpeg'
   },
   {
     id: 3,
@@ -60,7 +60,7 @@ const productos = [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-remera-microtull-con-encaje.jpeg'
   },
   {
     id: 4,
@@ -89,7 +89,7 @@ const productos = [
       { nombre: 'Beige', hex: '#F5F5DC' },
       { nombre: 'Durazno', hex: '#FFDAB9' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-remera-boxy-fit.jpeg'
   },
   {
     id: 5,
@@ -107,7 +107,7 @@ const productos = [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Beige', hex: '#F5F5DC' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-remera-oversize.jpeg'
   },
   {
     id: 6,
@@ -127,7 +127,7 @@ const productos = [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-remera-basica.jpeg'
   },
   {
     id: 7,
@@ -149,7 +149,7 @@ const productos = [
       { nombre: 'Chocolate', hex: '#7B3F00' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-vestido-aura.jpeg'
   },
   {
     id: 8,
@@ -165,7 +165,7 @@ const productos = [
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-body-microtull-con-encaje.jpeg'
   },
   {
     id: 9,
@@ -182,7 +182,7 @@ const productos = [
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-body-luna.jpeg'
   },
   {
     id: 10,
@@ -200,7 +200,7 @@ const productos = [
     colores: [
       { nombre: 'Negro', hex: '#000000' }
     ],
-    guiaTalles: 'img/guia-talles.jpg'
+    guiaTalles: 'img/guia-de-talles/gt-body-cierre.jpeg'
   }
 ];
 
@@ -490,7 +490,6 @@ function actualizarCarrito() {
       mensajeRapido.style.display = 'block';
       mensajeNormal.style.display = 'none';
       
-      // LÓGICA DE "LLEGA HOY" vs "LLEGA MAÑANA" (Basado en la hora actual)
       const horaActual = new Date().getHours();
       if (horaActual < 12) {
         mensajeRapido.innerHTML = '<i class="fa-solid fa-truck-fast"></i> ¡LLEGA HOY! (Comprando antes de las 12hs)';
