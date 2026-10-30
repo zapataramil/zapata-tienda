@@ -60,7 +60,7 @@ const productos = [
       { nombre: 'Negro', hex: '#000000' },
       { nombre: 'Blanco', hex: '#FFFFFF' }
     ],
-    guiaTalles: 'img/guia-de-talles/gt-remera-microtull-con-encaje.png'
+    guiaTalles: 'img/guia-de-talles/gt-remera-microtull.png'
   },
   {
     id: 4,
