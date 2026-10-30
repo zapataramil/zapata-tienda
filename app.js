@@ -7,7 +7,7 @@ const productos = [
   {
     id: 1,
     nombre: 'Campera Engomada',
-    precio: 30000,
+    precio: 100,
     badge: 'NUEVO',
     categoria: 'ropa',
     imagenes: [
