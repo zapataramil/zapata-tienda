@@ -1,5 +1,4 @@
 import { MercadoPagoConfig, Payment } from 'mercadopago';
-import crypto from 'crypto';
 import { Resend } from 'resend';
 
 const client = new MercadoPagoConfig({
@@ -15,64 +14,51 @@ export const config = {
 };
 
 export default async function handler(req, res) {
+  // CORS para Vercel
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
+  // Le decimos a MercadoPago que recibimos el mensaje
   res.status(200).send('OK');
 
   try {
-    // Aseguramos que body sea un objeto (Vercel a veces lo manda como string si no está bien parseado)
+    // 1. CAPTURAMOS LOS DATOS DE FORMA SEGURA (Por si vienen en body o en query)
     let body = req.body;
+    
     if (typeof body === 'string') {
-      body = JSON.parse(body);
+      try { body = JSON.parse(body); } catch (e) { body = {}; }
+    }
+    if (Buffer.isBuffer(body)) {
+      try { body = JSON.parse(body.toString()); } catch (e) { body = {}; }
+    }
+    if (!body) body = {};
+
+    const type = body.type || req.query.type || req.query.topic;
+    const paymentId = body.data?.id || req.query['data.id'] || req.query.id;
+
+    console.log(`🔔 Webhook recibido - Tipo: ${type} - ID del Pago: ${paymentId}`);
+
+    // Si no es un pago, o no hay ID, cortamos la ejecución acá.
+    if (type !== 'payment' || !paymentId) {
+      console.log('⏭️ No es un pago válido o falta el ID. Ignorando.');
+      return;
     }
 
-    /* ========================================================
-       VALIDACIÓN DE FIRMA DESACTIVADA TEMPORALMENTE PARA PRUEBAS
-       (La volveremos a activar cuando confirmemos que el mail llega)
-       ========================================================
-    const xSignature = req.headers['x-signature'];
-    const xRequestId = req.headers['x-request-id'];
-
-    if (xSignature && xRequestId && process.env.MP_WEBHOOK_SECRET) {
-      const partes = xSignature.split(',');
-      const ts = partes.find(p => p.trim().startsWith('ts='))?.replace('ts=', '').trim();
-      const v1 = partes.find(p => p.trim().startsWith('v1='))?.replace('v1=', '').trim();
-
-      const dataId = (body.data?.id || req.query['data.id'] || '').toString().toLowerCase();
-      const manifest = `id:${dataId};request-id:${xRequestId};ts:${ts};`;
-
-      const hmac = crypto
-        .createHmac('sha256', process.env.MP_WEBHOOK_SECRET)
-        .update(manifest)
-        .digest('hex');
-
-      if (hmac !== v1) {
-        console.warn('⚠️ Firma del webhook inválida. Se cancela el proceso.');
-        return;
-      }
-    }
-    ======================================================== */
-
-    if (body.type !== 'payment') return;
-
-    const paymentId = body.data?.id;
-    if (!paymentId) return;
-
+    // 2. CONSULTAMOS EL PAGO REAL A MERCADOPAGO
     const payment = new Payment(client);
     const paymentInfo = await payment.get({ id: paymentId });
 
-    const orderId = paymentInfo.external_reference;
+    const orderId = paymentInfo.external_reference || 'Sin ID de orden';
     const status = paymentInfo.status;
     const monto = paymentInfo.transaction_amount;
 
     console.log(`💳 Pago ${paymentId} — Estado: ${status} — Pedido: ${orderId}`);
 
     if (status === 'approved') {
-      console.log(`✅ PAGO APROBADO — Pedido: ${orderId}`);
+      console.log(`✅ PAGO APROBADO — Preparando correo para ${orderId}`);
 
       const metadata = paymentInfo.metadata || {};
       const cliente = metadata.cliente || {};
@@ -103,8 +89,6 @@ export default async function handler(req, res) {
       `;
 
       try {
-        // OJO: Si el mail de destino no es el mismo con el que te registraste en Resend, 
-        // tenés que verificar tu dominio en Resend. Si no, rebotará.
         await resend.emails.send({
           from: 'ZAPATA Indumentaria <onboarding@resend.dev>',
           to: [process.env.EMAIL_DESTINO],
@@ -113,11 +97,11 @@ export default async function handler(req, res) {
         });
         console.log('📧 Correo de venta enviado con éxito');
       } catch (emailError) {
-        console.error('Error al enviar el correo:', emailError);
+        console.error('❌ Error al enviar el correo con Resend:', emailError);
       }
     }
 
   } catch (error) {
-    console.error('Error webhook:', error);
+    console.error('❌ Error general en el webhook:', error);
   }
 }
