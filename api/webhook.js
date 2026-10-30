@@ -6,12 +6,11 @@ const client = new MercadoPagoConfig({
   accessToken: process.env.MP_ACCESS_TOKEN
 });
 
-// Inicializamos Resend con tu API Key
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const config = {
   api: {
-    bodyParser: false
+    bodyParser: false // Mantenemos esto para la validación de firma
   }
 };
 
@@ -22,10 +21,12 @@ export default async function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
+  // Respondemos rápido a MercadoPago
   res.status(200).send('OK');
 
   try {
-    const body = JSON.parse(req.body.toString());
+    // 👇 ACÁ ESTÁ LA CORRECCIÓN PRINCIPAL
+    const body = req.body; 
 
     // Validar firma HMAC
     const xSignature = req.headers['x-signature'];
@@ -67,11 +68,9 @@ export default async function handler(req, res) {
     if (status === 'approved') {
       console.log(`✅ PAGO APROBADO — Pedido: ${orderId}`);
 
-      // Recuperamos los datos del comprador desde metadata
       const metadata = paymentInfo.metadata || {};
       const cliente = metadata.cliente || {};
 
-      // Construimos el HTML del correo con todos los datos
       const htmlEmail = `
         <h2>🎉 ¡Nueva venta en ZAPATA!</h2>
         <p><strong>Pedido:</strong> ${orderId}</p>
@@ -97,11 +96,11 @@ export default async function handler(req, res) {
         <p><em>Este es un aviso automático de tu tienda ZAPATA.</em></p>
       `;
 
-      // Enviamos el correo con Resend
+      // 👇 AGREGAMOS AWAIT PARA ASEGURAR EL ENVÍO
       try {
         await resend.emails.send({
-          from: 'ZAPATA Indumentaria <onboarding@resend.dev>', // Cambiar por tu dominio verificado en producción
-          to: [process.env.EMAIL_DESTINO], // Tu correo personal
+          from: 'ZAPATA Indumentaria <onboarding@resend.dev>',
+          to: [process.env.EMAIL_DESTINO],
           subject: `🛍️ Nueva venta - Pedido ${orderId}`,
           html: htmlEmail,
         });
