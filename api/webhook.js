@@ -14,20 +14,14 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  // CORS para Vercel
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // Le decimos a MercadoPago que recibimos el mensaje
-  res.status(200).send('OK');
-
   try {
-    // 1. CAPTURAMOS LOS DATOS DE FORMA SEGURA (Por si vienen en body o en query)
     let body = req.body;
-    
     if (typeof body === 'string') {
       try { body = JSON.parse(body); } catch (e) { body = {}; }
     }
@@ -41,13 +35,11 @@ export default async function handler(req, res) {
 
     console.log(`🔔 Webhook recibido - Tipo: ${type} - ID del Pago: ${paymentId}`);
 
-    // Si no es un pago, o no hay ID, cortamos la ejecución acá.
     if (type !== 'payment' || !paymentId) {
       console.log('⏭️ No es un pago válido o falta el ID. Ignorando.');
-      return;
+      return res.status(200).send('Ignorado');
     }
 
-    // 2. CONSULTAMOS EL PAGO REAL A MERCADOPAGO
     const payment = new Payment(client);
     const paymentInfo = await payment.get({ id: paymentId });
 
@@ -101,7 +93,12 @@ export default async function handler(req, res) {
       }
     }
 
+    // AHORA RESPONDEMOS OK AL FINAL DE TODO
+    return res.status(200).send('OK');
+
   } catch (error) {
     console.error('❌ Error general en el webhook:', error);
+    // Aunque haya error, le decimos OK a MercadoPago para que no reintente infinitamente
+    return res.status(200).send('Error manejado');
   }
 }
